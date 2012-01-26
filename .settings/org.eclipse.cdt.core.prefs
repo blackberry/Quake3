@@ -1,0 +1,16 @@
+#Tue Jan 24 11:54:19 EST 2012
+eclipse.preferences.version=1
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/AS/delimiter=;
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/AS/operation=replace
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/AS/value=qcc -Vgcc_ntoarmv7
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/CC/delimiter=;
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/CC/operation=replace
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/CC/value=qcc -Vgcc_ntoarmv7
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/CXX/delimiter=;
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/CXX/operation=replace
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/CXX/value=qcc -Vgcc_ntoarmv7
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/LD/delimiter=;
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/LD/operation=replace
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/LD/value=qcc -Vgcc_ntoarmv7
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/append=true
+environment/project/com.qnx.qcc.configuration.exe.debug.513359716/appendContributed=true
