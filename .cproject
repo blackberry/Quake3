@@ -117,7 +117,7 @@
 								<option id="com.qnx.qcc.option.linker.qccoptions.648308176" name="QCC Options" superClass="com.qnx.qcc.option.linker.qccoptions" valueType="stringList">
 									<listOptionValue builtIn="false" value="-lang-c++"/>
 								</option>
-								<option id="com.qnx.qcc.option.linker.objectFiles.1459185342" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles" valueType="userObjs"/>
+								<option id="com.qnx.qcc.option.linker.objectFiles.1459185342" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles"/>
 								<inputType id="com.qnx.qcc.inputType.linker.868813267" superClass="com.qnx.qcc.inputType.linker">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -151,10 +151,28 @@
 							<option id="com.qnx.qcc.option.cpu.2063492713" name="Target CPU:" superClass="com.qnx.qcc.option.cpu" value="com.qnx.qcc.option.gen.cpu.armle-v7" valueType="enumerated"/>
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.qnx.qcc.targetPlatform.1220037625" osList="all" superClass="com.qnx.qcc.targetPlatform"/>
 							<builder buildPath="${workspace_loc:/quake3/Device-Release}" id="com.qnx.nto.523787634" keepEnvironmentInBuildfile="false" name="CDT Internal Builder" superClass="com.qnx.nto"/>
-							<tool id="com.qnx.qcc.tool.compiler.374925994" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
+							<tool commandLinePattern="qcc -Vgcc_ntoarmv7 -w1 -fPIC -I${workspace_loc:/${ProjName}\code\q3_ui} -I${workspace_loc:/${ProjName}/code/ui} -I${workspace_loc:/${ProjName}/code/game} -IC:/bbndk-2.0.0-beta1/target/qnx6/usr/include/freetype2 -IC:/bbndk-2.0.0-beta1/target/qnx6/usr/include -IC:/bbndk-2.0.0-beta1/target/target-override/usr/include -IC:/bbndk-2.0.0-beta1/target/qnx6/usr/include/GLES -DVARIANT_le -DVARIANT_g -DVARIANT_v7 -DBUILDENV_qss -DRENDER_COLOUR_SOFTWARE -DUSE_OPENGL_ES_1_1 -DSIGIOT=SIGABRT -DFNDELAY=O_NONBLOCK -DSIGTTIN=SIGSTOP -D_LIB -DBOTLIB -DCGAME_HARD_LINKED -DGAME_HARD_LINKED -DUI_HARD_LINKED -DGLOBALRANK -DQ3_UI_EXPORT -DUSE_OPENAL -DSTATIC_LINK -c -g -O -EL ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="com.qnx.qcc.tool.compiler.374925994" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
 								<option id="com.qnx.qcc.option.compiler.optlevel.2058143306" name="Optimization Level" superClass="com.qnx.qcc.option.compiler.optlevel" value="com.qnx.qcc.option.compiler.optlevel.2" valueType="enumerated"/>
 								<option id="com.qnx.qcc.option.compiler.security.455175983" name="Enhanced Security (-fstack-protector-all)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.1491513924" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="VARIANT_le"/>
+									<listOptionValue builtIn="false" value="VARIANT_g"/>
+									<listOptionValue builtIn="false" value="VARIANT_v7"/>
+									<listOptionValue builtIn="false" value="BUILDENV_qss"/>
+									<listOptionValue builtIn="false" value="RENDER_COLOUR_SOFTWARE"/>
+									<listOptionValue builtIn="false" value="USE_OPENGL_ES_1_1"/>
+									<listOptionValue builtIn="false" value="SIGIOT=SIGABRT"/>
+									<listOptionValue builtIn="false" value="FNDELAY=O_NONBLOCK"/>
+									<listOptionValue builtIn="false" value="SIGTTIN=SIGSTOP"/>
+									<listOptionValue builtIn="false" value="_LIB"/>
+									<listOptionValue builtIn="false" value="BOTLIB"/>
+									<listOptionValue builtIn="false" value="CGAME_HARD_LINKED"/>
+									<listOptionValue builtIn="false" value="GAME_HARD_LINKED"/>
+									<listOptionValue builtIn="false" value="UI_HARD_LINKED"/>
+									<listOptionValue builtIn="false" value="GLOBALRANK"/>
+									<listOptionValue builtIn="false" value="Q3_UI_EXPORT"/>
+									<listOptionValue builtIn="false" value="USE_OPENAL"/>
+									<listOptionValue builtIn="false" value="STATIC_LINK"/>
 									<listOptionValue builtIn="false" value="_FORTIFY_SOURCE=2"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.pie.1623377486" name="Position Independent Executable (-fPIE)" superClass="com.qnx.qcc.option.compiler.pie" value="true" valueType="boolean"/>
@@ -166,6 +184,9 @@
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/qnx6/usr/include"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/qnx6/usr/include/GLES"/>
+								</option>
+								<option id="com.qnx.qcc.option.compiler.qccoptions.576561267" name="QCC Options" superClass="com.qnx.qcc.option.compiler.qccoptions" valueType="stringList">
+									<listOptionValue builtIn="false" value="-O"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.374617767" superClass="com.qnx.qcc.inputType.compiler"/>
 							</tool>
@@ -191,7 +212,7 @@
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
 								</option>
-								<option id="com.qnx.qcc.option.linker.objectFiles.301681044" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles" valueType="userObjs"/>
+								<option id="com.qnx.qcc.option.linker.objectFiles.301681044" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles"/>
 								<inputType id="com.qnx.qcc.inputType.linker.2023462528" superClass="com.qnx.qcc.inputType.linker">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -202,7 +223,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="code/client/snd_codec_ogg.c|code/cgame/_skeleton.c|code/cgame/cg_newdraw.c|code/cgame/cg_particles.c|code/game/_skeleton.c|code/game/g_rankings.c|code/jpeg-6/jcapistd.c|code/jpeg-6/jload.c|code/jpeg-6/jmemdos.c|code/jpeg-6/jmemname.c|code/jpeg-6/jmemnobs.c|code/jpeg-6/jpegtran.c|code/null/mac_net.c|code/null/null_client.c|code/null/null_glimp.c|code/null/null_input.c|code/null/null_main.c|code/null/null_net.c|code/q3_ui/_skeleton.c|code/q3_ui/ui_loadconfig.c|code/q3_ui/ui_login.c|code/q3_ui/ui_rankings.c|code/q3_ui/ui_rankstatus.c|code/q3_ui/ui_saveconfig.c|code/q3_ui/ui_signup.c|code/q3_ui/ui_specifyleague.c|code/qcommon/gleswrappers.c|code/qcommon/vm_ppc_new.c|code/qcommon/vm_ppc.c|code/server/sv_rankings.c|code/splines/q_shared.cpp|code/ui/ui_util.c|code/unix/linux_common.c|code/unix/linux_glimp_rim.c|code/unix/linux_glimp_vdk.c|code/unix/linux_glimp.c|code/unix/linux_joystick.c|code/unix/linux_qgl.c|code/unix/linux_snd.c|code/unix/rim_shared.c|code/unix/unix_main.c|code/unix/unix_net.c" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -267,7 +288,7 @@
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
 								</option>
-								<option id="com.qnx.qcc.option.linker.objectFiles.330206768" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles" valueType="userObjs"/>
+								<option id="com.qnx.qcc.option.linker.objectFiles.330206768" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles"/>
 								<inputType id="com.qnx.qcc.inputType.linker.11204493" superClass="com.qnx.qcc.inputType.linker">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -343,7 +364,7 @@
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
 								</option>
-								<option id="com.qnx.qcc.option.linker.objectFiles.83618617" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles" valueType="userObjs"/>
+								<option id="com.qnx.qcc.option.linker.objectFiles.83618617" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles"/>
 								<inputType id="com.qnx.qcc.inputType.linker.42548228" superClass="com.qnx.qcc.inputType.linker">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -416,7 +437,7 @@
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
 								</option>
-								<option id="com.qnx.qcc.option.linker.objectFiles.1768585476" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles" valueType="userObjs"/>
+								<option id="com.qnx.qcc.option.linker.objectFiles.1768585476" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles"/>
 								<inputType id="com.qnx.qcc.inputType.linker.1126528806" superClass="com.qnx.qcc.inputType.linker">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -491,7 +512,7 @@
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
 								</option>
-								<option id="com.qnx.qcc.option.linker.objectFiles.1936893145" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles" valueType="userObjs"/>
+								<option id="com.qnx.qcc.option.linker.objectFiles.1936893145" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles"/>
 								<inputType id="com.qnx.qcc.inputType.linker.863501103" superClass="com.qnx.qcc.inputType.linker">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -566,7 +587,7 @@
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/lib"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/${CPUVARDIR}/usr/lib"/>
 								</option>
-								<option id="com.qnx.qcc.option.linker.objectFiles.1707730578" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles" valueType="userObjs"/>
+								<option id="com.qnx.qcc.option.linker.objectFiles.1707730578" name="Additional Object Files" superClass="com.qnx.qcc.option.linker.objectFiles"/>
 								<inputType id="com.qnx.qcc.inputType.linker.996658261" superClass="com.qnx.qcc.inputType.linker">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
