@@ -14,11 +14,11 @@ Build from Makefile
 -------------------------------
 - Run cmd.exe and execute the following commands:
 
-  `> cd [bbndk]` -- where `[bbndk]` is where the QNX NDK was installed (i.e. C:\bbndk-2.0.0)
+  `> cd [bbndk]` -- where [bbndk] is where the QNX NDK was installed (i.e. C:\bbndk-2.0.0)
 
   `> bbndk-env[.bat/.sh]`
 
-  `> cd [Quake3]/qnx` -- where `[Quake3]` is the directory where Quake3 was extracted to
+  `> cd [Quake3]/qnx` -- where [Quake3] is the directory where Quake3 was extracted to
 
   `> make`
 
@@ -29,5 +29,7 @@ Build from Makefile
         
 - Run the following to build the Quake3 bar file. Add the additional parameters for signing keys and debug tokens.
 
-  `> blackberry-nativepackager -package Quake3.bar bar-descriptor.xml -e qnx/nto/arm/o.le.v7/quake3 quake3 -e resource/baseq3/pak0.pk3 baseq3/pak0.pk3 icon.png`
+  `> blackberry-nativepackager -package Quake3.bar bar-descriptor.xml -e qnx/nto/arm/o.le.v7/quake3 quake3`
+
+  `-e resource/baseq3/pak0.pk3 baseq3/pak0.pk3 icon.png`
 
