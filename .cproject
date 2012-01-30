@@ -33,9 +33,9 @@
 									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="Simulator-Coverage"/>
 								</outputEntries>
 							</builder>
-							<tool commandLinePattern="qcc -Vgcc_ntoarmv7 -w1 -I${workspace_loc:/${ProjName}\code\q3_ui} -I${workspace_loc:/${ProjName}/code/ui} -I${workspace_loc:/${ProjName}/code/game} -IC:/bbndk-2.0.0-beta1/target/qnx6/usr/include/freetype2 -IC:/bbndk-2.0.0-beta1/target/qnx6/usr/include -IC:/bbndk-2.0.0-beta1/target/target-override/usr/include -IC:/bbndk-2.0.0-beta1/target/qnx6/usr/include/GLES -DVARIANT_le -DVARIANT_g -DVARIANT_v7 -DBUILDENV_qss -DRENDER_COLOUR_SOFTWARE -DUSE_OPENGL_ES_1_1 -DSIGIOT=SIGABRT -DFNDELAY=O_NONBLOCK -DSIGTTIN=SIGSTOP -D_LIB -DBOTLIB -DCGAME_HARD_LINKED -DGAME_HARD_LINKED -DUI_HARD_LINKED -DGLOBALRANK -DQ3_UI_EXPORT -DUSE_OPENAL -DSTATIC_LINK -c -g -O -EL ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="com.qnx.qcc.tool.compiler.723290734" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
+							<tool commandLinePattern="${COMMAND}  ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} ${FLAGS}" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="com.qnx.qcc.tool.compiler.723290734" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
 								<option id="com.qnx.qcc.option.compile.debug.273936831" name="Debug (-g)" superClass="com.qnx.qcc.option.compile.debug" value="true" valueType="boolean"/>
-								<option id="com.qnx.qcc.option.compiler.security.687450187" name="Enhanced Security (-fstack-protector-all)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
+								<option id="com.qnx.qcc.option.compiler.security.687450187" name="Enhanced Security (-fstack-protector-all)" superClass="com.qnx.qcc.option.compiler.security" value="false" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.901851270" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="VARIANT_le"/>
 									<listOptionValue builtIn="false" value="VARIANT_g"/>
@@ -59,12 +59,10 @@
 								</option>
 								<option id="com.qnx.qcc.option.compiler.includePath.1957488605" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/code/q3_ui}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/code/game}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/code/ui}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/code/game}&quot;"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/qnx6/usr/include"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/qnx6/usr/include/GLES"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.qccoptions.345952782" name="QCC Options" superClass="com.qnx.qcc.option.compiler.qccoptions" valueType="stringList">
 									<listOptionValue builtIn="false" value="-O"/>
@@ -151,9 +149,9 @@
 							<option id="com.qnx.qcc.option.cpu.2063492713" name="Target CPU:" superClass="com.qnx.qcc.option.cpu" value="com.qnx.qcc.option.gen.cpu.armle-v7" valueType="enumerated"/>
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.qnx.qcc.targetPlatform.1220037625" osList="all" superClass="com.qnx.qcc.targetPlatform"/>
 							<builder buildPath="${workspace_loc:/quake3/Device-Release}" id="com.qnx.nto.523787634" keepEnvironmentInBuildfile="false" name="CDT Internal Builder" superClass="com.qnx.nto"/>
-							<tool commandLinePattern="qcc -Vgcc_ntoarmv7 -w1 -fPIC -I${workspace_loc:/${ProjName}\code\q3_ui} -I${workspace_loc:/${ProjName}/code/ui} -I${workspace_loc:/${ProjName}/code/game} -IC:/bbndk-2.0.0-beta1/target/qnx6/usr/include/freetype2 -IC:/bbndk-2.0.0-beta1/target/qnx6/usr/include -IC:/bbndk-2.0.0-beta1/target/target-override/usr/include -IC:/bbndk-2.0.0-beta1/target/qnx6/usr/include/GLES -DVARIANT_le -DVARIANT_g -DVARIANT_v7 -DBUILDENV_qss -DRENDER_COLOUR_SOFTWARE -DUSE_OPENGL_ES_1_1 -DSIGIOT=SIGABRT -DFNDELAY=O_NONBLOCK -DSIGTTIN=SIGSTOP -D_LIB -DBOTLIB -DCGAME_HARD_LINKED -DGAME_HARD_LINKED -DUI_HARD_LINKED -DGLOBALRANK -DQ3_UI_EXPORT -DUSE_OPENAL -DSTATIC_LINK -c -g -O -EL ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="com.qnx.qcc.tool.compiler.374925994" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
+							<tool commandLinePattern="${COMMAND}  ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} ${FLAGS}" id="com.qnx.qcc.tool.compiler.374925994" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
 								<option id="com.qnx.qcc.option.compiler.optlevel.2058143306" name="Optimization Level" superClass="com.qnx.qcc.option.compiler.optlevel" value="com.qnx.qcc.option.compiler.optlevel.2" valueType="enumerated"/>
-								<option id="com.qnx.qcc.option.compiler.security.455175983" name="Enhanced Security (-fstack-protector-all)" superClass="com.qnx.qcc.option.compiler.security" value="true" valueType="boolean"/>
+								<option id="com.qnx.qcc.option.compiler.security.455175983" name="Enhanced Security (-fstack-protector-all)" superClass="com.qnx.qcc.option.compiler.security" value="false" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.defines.1491513924" name="Defines (-D)" superClass="com.qnx.qcc.option.compiler.defines" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="VARIANT_le"/>
 									<listOptionValue builtIn="false" value="VARIANT_g"/>
@@ -178,12 +176,10 @@
 								<option id="com.qnx.qcc.option.compiler.pie.1623377486" name="Position Independent Executable (-fPIE)" superClass="com.qnx.qcc.option.compiler.pie" value="true" valueType="boolean"/>
 								<option id="com.qnx.qcc.option.compiler.includePath.652328024" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/code/q3_ui}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/code/game}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/code/ui}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/code/game}&quot;"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/freetype2"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/qnx6/usr/include"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/../target-override/usr/include"/>
-									<listOptionValue builtIn="false" value="${QNX_TARGET}/qnx6/usr/include/GLES"/>
 								</option>
 								<option id="com.qnx.qcc.option.compiler.qccoptions.576561267" name="QCC Options" superClass="com.qnx.qcc.option.compiler.qccoptions" valueType="stringList">
 									<listOptionValue builtIn="false" value="-O"/>
