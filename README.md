@@ -17,7 +17,7 @@ Building from Momentics IDE
 ---------------------------
 - Run BlackBerry Momentics IDE.
 - Import the project from the repo directory "Quake3".
-- Right click Project -> Build Configurations -> Set Active Congiguration -> Device-Release or Device-Debug.
+- Right click Project -> Build Configurations -> Set Active Configuration -> Device-Release or Device-Debug.
 - Build the project.
 - Debug or Run the project.
 
