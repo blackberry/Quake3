@@ -86,7 +86,7 @@ static qboolean Menu_OverActiveItem(menuDef_t *menu, float x, float y);
 static char		memoryPool[MEM_POOL_SIZE];
 static int		allocPoint, outOfMemory;
 
-#if !defined(RIM_NDK) && !defined(__QNXNTO__)
+#if !defined(__QNX__)
 /*
 ===============
 UI_Alloc

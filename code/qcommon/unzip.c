@@ -1270,7 +1270,7 @@ extern uLong unzlocal_SearchCentralDir(FILE *fin)
 			break;
 
         for (i=(int)uReadSize-3; (i--)>0;) {
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
             Com_Printf( "i: %d:  0x%x 0x%x 0x%x 0x%x", i, *(buf+i), *(buf+i+1), *(buf+i+2), *(buf+i+3));
 #endif
 			if (((*(buf+i))==0x50) && ((*(buf+i+1))==0x4b) && 

@@ -1266,10 +1266,10 @@ void CG_ParticleSnowFlurry (qhandle_t pshader, centity_t *cent)
 		p->vel[2] = -10;
 	
 	VectorCopy(cent->currentState.origin, p->org);
-
-	p->org[0] = p->org[0];
-	p->org[1] = p->org[1];
-	p->org[2] = p->org[2];
+	// SPT ????
+	//p->org[0] = p->org[0];
+	//p->org[1] = p->org[1];
+	//p->org[2] = p->org[2];
 
 	p->vel[0] = p->vel[1] = 0;
 	

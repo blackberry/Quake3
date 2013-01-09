@@ -306,10 +306,7 @@ inline static float LittleFloat (const float *l) { return FloatSwap(l); }
 
 #endif
 
-#if defined(RIM_NDK)|| defined(__QNXNTO__)
-
-// NDK doesn't have stricmp/strcasecmp functions yet
-//#define stricmp strcasecmp
+#if defined(__QNX__)
 
 #define	MAC_STATIC
 #define ID_INLINE 

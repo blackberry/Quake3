@@ -25,11 +25,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <sys/time.h>
 #include <netinet/in.h>
 #include <errno.h>
-#ifdef __QNXNTO__
+#ifdef __QNX__
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
-#include <arpa/inet.h> // bk001204
+#include <arpa/inet.h>
 #include <sys/ioctl.h>
 #endif
 
@@ -61,7 +61,7 @@ char *NET_ErrorString (void)
 // sleeps msec or until net socket is ready
 void NET_Sleep(int msec)
 {
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
     usleep(msec*1000);
 #else
     struct timeval timeout;
@@ -81,11 +81,6 @@ void NET_Sleep(int msec)
 #endif
 }
 
-/*
-==================
-Sys_SendPacket
-==================
-*/
 void	Sys_SendPacket( int length, const void *data, netadr_t to )
 {
 	int		ret;
@@ -121,18 +116,10 @@ void	Sys_SendPacket( int length, const void *data, netadr_t to )
 	ret = sendto (net_socket, data, length, 0, (struct sockaddr *)&addr, sizeof(addr) );
 	if (ret == -1)
 	{
-		Com_Printf ("NET_SendPacket ERROR: %s to %s\n", NET_ErrorString(),
-				NET_AdrToString (to));
+		Com_Printf ("NET_SendPacket ERROR: %s to %s\n", NET_ErrorString(), NET_AdrToString (to));
 	}
 }
 
-/*
-==================
-Sys_GetPacket
-
-Never called by the game logic, just the system event queing
-==================
-*/
 qboolean	Sys_GetPacket (netadr_t *net_from, qmsg_t *net_message)
 {
 	int 	ret;
@@ -153,8 +140,7 @@ qboolean	Sys_GetPacket (netadr_t *net_from, qmsg_t *net_message)
 			continue;
 
 		fromlen = sizeof(from);
-		ret = recvfrom (net_socket, net_message->data, net_message->maxsize
-			, 0, (struct sockaddr *)&from, &fromlen);
+		ret = recvfrom (net_socket, net_message->data, net_message->maxsize, 0, (struct sockaddr *)&from, &fromlen);
 
 		SockadrToNetadr (&from, net_from);
 		// bk000305: was missing
@@ -184,26 +170,24 @@ qboolean	Sys_GetPacket (netadr_t *net_from, qmsg_t *net_message)
 	return qfalse;
 }
 
-
 qboolean Sys_IsLANAddress (netadr_t adr)
 {
 	int		i;
-
-	if( adr.type == NA_LOOPBACK ) {
+	if( adr.type == NA_LOOPBACK )
+	{
 		return qtrue;
 	}
-
-	if( adr.type == NA_IPX ) {
+	if( adr.type == NA_IPX )
+	{
 		return qtrue;
 	}
-
-	if( adr.type != NA_IP ) {
+	if( adr.type != NA_IP )
+	{
 		return qfalse;
 	}
 
-	// choose which comparison to use based on the class of the address being tested
+	// Choose which comparison to use based on the class of the address being tested
 	// any local adresses of a different class than the address being tested will fail based on the first byte
-
 	// Class A
 	if( (adr.ip[0] & 0x80) == 0x00 ) {
 		for ( i = 0 ; i < numIP ; i++ ) {
@@ -271,7 +255,7 @@ void NetadrToSockadr (netadr_t *a, struct sockaddr_in *s)
 	}
 }
 
-qboolean	Sys_StringToSockaddr (const char *s, struct sockaddr *sadr)
+qboolean Sys_StringToSockaddr (const char *s, struct sockaddr *sadr)
 {
 	struct hostent	*h;
 	//char	*colon; // bk001204 - unused
@@ -315,7 +299,8 @@ void NET_GetLocalAddress( void ) {
 	int					ip;
 	int					n;
 
-	if ( gethostname( hostname, 256 ) == -1 ) {
+	if ( gethostname( hostname, 256 ) == -1 )
+	{
 		return;
 	}
 
@@ -449,16 +434,10 @@ int NET_IPSocket (char *net_interface, int port)
 		close (newsocket);
 		return 0;
 	}
-
 	return newsocket;
 }
 
-/*
-====================
-NET_Shutdown
-====================
-*/
-void	NET_Shutdown (void)
+void NET_Shutdown (void)
 {
 	if (ip_socket) {
 		close(ip_socket);

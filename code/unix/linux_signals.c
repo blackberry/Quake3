@@ -54,7 +54,7 @@ void InitSig(void)
   signal(SIGILL, signal_handler);
   signal(SIGTRAP, signal_handler);
   signal(SIGIOT, signal_handler);
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
   Com_Printf("WARNING: skipping signal(SIGBUS, signal_handler);");
 #else
   signal(SIGBUS, signal_handler);

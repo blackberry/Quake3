@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "client.h"
 #if defined(UNDER_CE)
 #include <windows.h>
-#elif defined(RIM_NDK) || defined(__QNXNTO__)
+#elif defined(__QNX__)
 #include <sys/times.h>
 #endif
 
@@ -998,9 +998,7 @@ void CL_AddKeyUpCommands( int key, char *kb ) {
 				// sources can be discriminated and subframe corrected
 #if defined(UNDER_CE)
 				Com_sprintf (cmd, sizeof(cmd), "-%s %i %i\n", button+1, key, GetTickCount());
-#elif defined(RIM_NDK)
-				Com_sprintf (cmd, sizeof(cmd), "-%s %i %i\n", button+1, key, getticks());
-#elif defined(__QNXNTO__)
+#elif defined(__QNX__)
 				Com_sprintf (cmd, sizeof(cmd), "-%s %i %i\n", button+1, key, clock() * 1000 / CLOCKS_PER_SEC);
 #else
 				Com_sprintf (cmd, sizeof(cmd), "-%s %i %i\n", button+1, key, time);

@@ -915,7 +915,7 @@ void UI_SPSkillMenu_Cache( void );
 //
 // ui_syscalls.c
 //
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
 void			UI_trap_Print( const char *string );
 void			UI_trap_Error( const char *string );
 int				UI_trap_Milliseconds( void );

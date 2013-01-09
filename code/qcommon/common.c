@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "../game/q_shared.h"
 #include "qcommon.h"
 #include <setjmp.h>
-#if defined(__linux__) || defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__linux__) || defined(__QNX__)
 #include <netinet/in.h>
 #else
 #if defined(MACOS_X)
@@ -1399,18 +1399,12 @@ void Com_TouchMemory( void ) {
 Com_InitZoneMemory
 =================
 */
-#ifdef RIM_NDK
-#include <sys/log.h>
-#elif __QNXNTO__
-#endif
 
 void Com_InitSmallZoneMemory( void ) {
 	s_smallZoneTotal = 512 * 1024;
 	// bk001205 - was malloc
-#ifdef __QNXNTO__
+#ifdef __QNX__
 	smallzone = calloc( s_smallZoneTotal, 1 );
-#elif RIM_NDK
-	smallzone = f_calloc( s_smallZoneTotal, 1 );
 #endif
 
 	if ( !smallzone ) {
@@ -1431,11 +1425,9 @@ void Com_InitZoneMemory( void ) {
 	} else {
 		s_zoneTotal = cv->integer * 1024 * 1024;
 	}
-#ifdef __QNXNTO__
+#ifdef __QNX__
 	// bk001205 - was malloc
 	mainzone = calloc( s_zoneTotal, 1 );
-#elif RIM_NDK
-	mainzone = f_calloc( s_zoneTotal, 1 );
 #endif
 	if ( !mainzone ) {
 		Com_Error( ERR_FATAL, "Zone data failed to allocate %i megs", s_zoneTotal / (1024*1024) );
@@ -2400,28 +2392,13 @@ Com_Init
 
 #include <sys/types.h> 
 #include <sys/ipc.h> 
-#ifndef __QNXNTO__
-#include <sys/shm.h> 
-#endif
-#ifndef __QNXNTO__
-#ifdef RIM_NDK
-#include <graphics/fmalloc.h> 
-#include <graphicsinit.h>
-#endif
-#endif
 
-void Com_Init( char *commandLine ) {
+void Com_Init( char *commandLine )
+{
 	char	*s;
-#ifdef RIM_NDK
-//RIM NDK specific code, initialize far malloc to allocate memory from a shared memory segment    
-    int shmid; /* return value from shmget() */ 
-    void* addr; /* attach point */ 
-#elif __QNXNTO__
-#endif
-
 
     //Adding this code here to cur the contiguous memory early on
-    QNX_initDriver();
+    BLACKBERRY_initDriver();
 
 	Com_Printf( "%s %s %s\n", Q3_VERSION, CPUSTRING, __DATE__ );
 
@@ -2431,38 +2408,12 @@ void Com_Init( char *commandLine ) {
 
     // bk001129 - do this before anything else decides to push events
     Com_InitPushEvent();
-
-#ifndef __QNXNTO__
-//RIM NDK specific code, initialize far malloc to allocate memory from a shared memory segment  
-    if ((shmid = shmget (IPC_PRIVATE, 96 << 20, IPC_CREAT)) == -1)
-    {
-        log_printf(LOG_INFO, "shmget: shmget failed"); 
-        sleep(10);
-        abort(); 
-    } 
-    else 
-    {
-        addr = shmat(shmid, addr, 0);
-
-        if (addr == NULL)
-        {
-            log_printf(LOG_INFO, "shmat: failed 0x%08x", addr); 
-            sleep(10);
-            abort();   
-        }
-
-        //Initialize far malloc to work off the newly attached shared memory segment
-        f_init(addr, (size_t)(96 << 20), 1);
-    }
-#endif
 	Com_InitSmallZoneMemory();
 	Cvar_Init ();
 
 	// prepare enough of the subsystems to handle
 	// cvar and command buffer management
 	Com_ParseCommandLine( commandLine );
-
-//	Swap_Init ();
 	Cbuf_Init ();
 
 	Com_InitZoneMemory();
@@ -2593,7 +2544,6 @@ void Com_Init( char *commandLine ) {
 
 	// start in full screen ui mode
 	Cvar_Set("r_uiFullScreen", "1");
-
 	CL_StartHunkUsers();
 
 	// make sure single player is off by default
@@ -2603,9 +2553,8 @@ void Com_Init( char *commandLine ) {
 	Com_Printf ("--- Common Initialization Complete ---\n");	
 }
 
-//==================================================================
-
-void Com_WriteConfigToFile( const char *filename ) {
+void Com_WriteConfigToFile( const char *filename )
+{
 	fileHandle_t	f;
 
 	f = FS_FOpenFileWrite( filename );
@@ -2621,14 +2570,8 @@ void Com_WriteConfigToFile( const char *filename ) {
 }
 
 
-/*
-===============
-Com_WriteConfiguration
-
-Writes key bindings and archived cvars to config file if modified
-===============
-*/
-void Com_WriteConfiguration( void ) {
+void Com_WriteConfiguration( void )
+{
 #ifndef DEDICATED // bk001204
 	cvar_t	*fs;
 #endif
@@ -2656,15 +2599,8 @@ void Com_WriteConfiguration( void ) {
 #endif
 }
 
-
-/*
-===============
-Com_WriteConfig_f
-
-Write the config file to a specific name
-===============
-*/
-void Com_WriteConfig_f( void ) {
+void Com_WriteConfig_f( void )
+{
 	char	filename[MAX_QPATH];
 
 	if ( Cmd_Argc() != 2 ) {
@@ -2678,17 +2614,10 @@ void Com_WriteConfig_f( void ) {
 	Com_WriteConfigToFile( filename );
 }
 
-/*
-================
-Com_ModifyMsec
-================
-*/
-int Com_ModifyMsec( int msec ) {
+int Com_ModifyMsec( int msec )
+{
 	int		clampTime;
-
-	//
 	// modify time for debugging values
-	//
 	if ( com_fixedtime->integer ) {
 		msec = com_fixedtime->integer;
 	} else if ( com_timescale->value ) {
@@ -2729,12 +2658,8 @@ int Com_ModifyMsec( int msec ) {
 	return msec;
 }
 
-/*
-=================
-Com_Frame
-=================
-*/
-void Com_Frame( void ) {
+void Com_Frame( void )
+{
 
 	int		msec, minMsec;
 	static int	lastTime;
@@ -2745,11 +2670,6 @@ void Com_Frame( void ) {
 	int           timeBeforeEvents;
 	int           timeBeforeClient;
 	int           timeAfter;
-  
-
-
-
-
 	if ( setjmp (abortframe) ) {
 		return;			// an ERR_DROP was thrown
 	}
@@ -2761,7 +2681,6 @@ void Com_Frame( void ) {
 	timeBeforeEvents =0;
 	timeBeforeClient = 0;
 	timeAfter = 0;
-
 
 	// old net chan encryption key
 	key = 0x87243987;
@@ -2900,12 +2819,8 @@ void Com_Frame( void ) {
 	com_frameNumber++;
 }
 
-/*
-=================
-Com_Shutdown
-=================
-*/
-void Com_Shutdown (void) {
+void Com_Shutdown (void)
+{
 	if (logfile) {
 		FS_FCloseFile (logfile);
 		logfile = 0;

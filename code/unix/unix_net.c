@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <netdb.h>
 #include <arpa/inet.h> // bk001204
 
-#if !defined(RIM_NDK) && !defined(__QNXNTO__)
+#if !defined(__QNX__)
     #include <sys/param.h>
     #include <sys/uio.h>
 #endif
@@ -535,7 +535,7 @@ int NET_IPSocket (char *net_interface, int port)
 	}
 
 	// make it non-blocking
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
     if (ioctl (newsocket, _IOW('f', 126, int), &_qtrue) == -1)
 #else
 	if (ioctl (newsocket, FIONBIO, &_qtrue) == -1)

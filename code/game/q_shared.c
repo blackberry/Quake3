@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 // q_shared.c -- stateless support routines that are included in each code dll
 #include "q_shared.h"
-#if defined(RIM_NDK)|| defined(__QNXNTO__)
+#if defined(__QNX__)
 #include "../qcommon/qcommon.h"
 #endif
 

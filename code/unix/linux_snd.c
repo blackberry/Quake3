@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <sys/shm.h>
-#if !defined(RIM_NDK) && !defined(__QNXNTO__)
+#if !defined(__QNX__)
     #include <sys/wait.h>
 #endif
 #ifdef __linux__ // rb0101023 - guard this

@@ -1161,7 +1161,7 @@ void CL_InitUI( void ) {
 
 	// sanity check
 	v = VM_Call( uivm, UI_GETAPIVERSION );
-#if !defined(RIM_NDK) && !defined(__QNXNTO__)
+#if !defined(__QNX__)
     Com_Printf("WARNING: Igoring issue in CL_InitUI where ui versions don't match");
 #endif
 	if (v == UI_OLD_API_VERSION) {

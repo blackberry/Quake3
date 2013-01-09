@@ -23,19 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "../client/client.h"
 #include "../q3_ui/ui_local.h"
 
-#ifdef RIM_NDK
-#include <egl.h>
-#include <graphicsinit.h>
-#include <string.h>
-#include <internal/message.h>
-#include <internal/keypad.h>
-
-// RIM_NDK Cheap trick to allow trackball.h to be included
-#ifndef RIM_DEPRECATED
-#define RIM_DEPRECATED
-#endif
-#include <internal/trackball.h>
-#elif __QNXNTO__
+#ifdef __QNX__
 #define FALSE 0
 #define TRUE 1
 #include <EGL/egl.h>
@@ -197,7 +185,7 @@ void PrintEglError( GLuint errorCode )
     }
 }
 
-void QNX_initDriver()
+void BLACKBERRY_initDriver()
 {
     int         err;
     int         egl_ret;
@@ -435,7 +423,7 @@ static void InitControls(void)
 	r2square = fireBoundRad * fireBoundRad; //25 * glConfig.vidWidth * glConfig.vidWidth / 10000;
 }
 
-int QNX_InitGL(void)
+int BLACKBERRY_InitGL(void)
 {
     int usage = SCREEN_USAGE_OPENGL_ES1;
 	int transp = SCREEN_TRANSPARENCY_NONE;
@@ -546,8 +534,8 @@ int QNX_InitGL(void)
 		return FALSE;
 	}
 
-	size[0] = 1024;
-	size[1] = 600;
+	size[0] = 1280;//1024;
+	size[1] = 768; //600;
 	err = screen_set_window_property_iv(screen_win, SCREEN_PROPERTY_SIZE, size);
 	if (err) {
 		Com_Printf("screen_set_window_property_iv(SCREEN_PROPERTY_SIZE)");
@@ -630,7 +618,8 @@ static void drawControls()
 	glPopMatrix();
 }
 
-void SwapBuffers( void ) {
+void SwapBuffers( void )
+{
 	int err, i;
 	int t;
 	int size[2];
@@ -669,33 +658,6 @@ void SwapBuffers( void ) {
 		glEnable(GL_TEXTURE_2D);
 	}
 
-//	if (min || max) {
-//		eglMakeCurrent(eglDisplay,
-//						EGL_NO_SURFACE,
-//						EGL_NO_SURFACE,
-//						EGL_NO_CONTEXT);
-//		eglMakeCurrent(eglDisplay,
-//						eglSurface,
-//						eglSurface,
-//						eglContext);
-//
-//		size[0] = glConfig.vidWidth;
-//		size[1] = glConfig.vidHeight;
-//		screen_set_window_property_iv(screen_win, SCREEN_PROPERTY_SOURCE_SIZE, size);
-//
-//		if (min) {
-//			pos[0] = 0;
-//			pos[1] = bz[1] - size[1];
-//			min = 0;
-//		} else {
-//			pos[0] = 0;
-//			pos[1] = 0;
-//			max = 0;
-//		}
-//
-//		screen_set_window_property_iv(screen_win, SCREEN_PROPERTY_SOURCE_POSITION, pos);
-//	}
-
 	eglSwapBuffers(eglDisplay, eglSurface);
 	err = eglGetError( );
 	if (err != EGL_SUCCESS ) {
@@ -706,13 +668,13 @@ void SwapBuffers( void ) {
 }
 
 /*
-** QNX_InitGraphics
+** BLACKBERRY_InitGraphics
 */
-int QNX_InitGraphics( int mode )
+int BLACKBERRY_InitGraphics( int mode )
 {
 	int ret;
 
-    ret = QNX_InitGL();
+    ret = BLACKBERRY_InitGL();
     if(FALSE == ret) {
         Com_Printf("Error, failed to initialize gl");
         return FALSE;
@@ -725,23 +687,13 @@ static qboolean LoadOpenGL( const char *name )
 {
 	qboolean fullscreen;
 	ri.Printf( PRINT_ALL, "...loading %s: ", name );
-
-	// disable the 3Dfx splash screen and set gamma
-	// we do this all the time, but it shouldn't hurt anything
-	// on non-3Dfx stuff
-	//putenv("FX_GLIDE_NO_SPLASH=0");
-
-	// Mesa VooDoo hacks
-	//putenv("MESA_GLX_FX=fullscreen\n");
-
-
 	// load GL layer
 	fullscreen = r_fullscreen->integer;
     ri.Cvar_Set( "r_fullscreen", "1" );
 	r_fullscreen->modified = qtrue;
 
 	// create the window and set up the context
-	if ( !QNX_InitGraphics(r_mode->integer) )
+	if ( !BLACKBERRY_InitGraphics(r_mode->integer) )
 	{
         ri.Printf( PRINT_ALL, "FAILURE: InitGL failed in this mode\n" );
         return qfalse;
@@ -852,12 +804,6 @@ void GLimp_Init( void )
 
 	ri.Cvar_Set( "r_lastValidRenderer", glConfig.renderer_string );
 
-	// initialize extensions
-	//GLW_InitExtensions();
-	//GLW_InitGamma();
-
-//	InitSig(); // not clear why this is at begin & end of function
-
 	return;
 }
 
@@ -868,25 +814,18 @@ void IN_DeactivateMouse( void )
 
 	if (mouse_active)
 	{
-// TODO: comment this first
-// zongzong.yan
-#if 0
-		if (!in_nograb->value)
-			uninstall_grabs();
-		else if (in_dgamouse->value) // force dga mouse to 0 if using nograb
-#endif
 		ri.Cvar_Set("in_dgamouse", "0");
 		mouse_active = qfalse;
 	}
 }
 
-void GLimp_Shutdown( void ) {
-	if (!eglContext || !eglDisplay) return;
+void GLimp_Shutdown( void )
+{
+	if (!eglContext || !eglDisplay)
+	    return;
 	
     IN_DeactivateMouse();
-	// bk001206 - replaced with H2/Fakk2 solution
-	// XAutoRepeatOn(dpy);
-	// autorepeaton = qfalse; // bk001130 - from cvs1.17 (mkv)
+
     screen_destroy_event(screen_ev);
 
     eglMakeCurrent(eglDisplay, NULL, NULL, NULL);
@@ -905,40 +844,50 @@ void GLimp_Shutdown( void ) {
 	memset( &glState, 0, sizeof( glState ) );
 }
 
-void		GLimp_EnableLogging( qboolean enable ) {
+void GLimp_EnableLogging( qboolean enable )
+{
 }
 
-void GLimp_LogComment( char *comment ) {
+void GLimp_LogComment( char *comment )
+{
 }
 
-void GLimp_SetGamma( unsigned char red[256], unsigned char green[256], unsigned char blue[256] ) {
+void GLimp_SetGamma( unsigned char red[256], unsigned char green[256], unsigned char blue[256] )
+{
 }
 
-qboolean GLimp_SpawnRenderThread( void (*function)( void ) ) {
+qboolean GLimp_SpawnRenderThread( void (*function)( void ) )
+{
 	ri.Printf( PRINT_WARNING, "ERROR: SMP support was disabled at compile time\n");
 	return qfalse;
 }
-void GLimp_FrontEndSleep( void ) {
+void GLimp_FrontEndSleep( void )
+{
 }
 
-void *GLimp_RendererSleep( void ) {
+void *GLimp_RendererSleep( void )
+{
     return NULL;
 }
 
-void GLimp_WakeRenderer( void *data ){
+void GLimp_WakeRenderer( void *data )
+{
 }
 
 
-#ifndef RIM_NDK
-qboolean QGL_Init( const char *dllname ) {
+
+qboolean QGL_Init( const char *dllname )
+{
 	return qtrue;
 }
 
-void		QGL_Shutdown( void ) {
+void QGL_Shutdown( void )
+{
 }
-#endif
 
-void IN_Init( void ) {
+
+void IN_Init( void )
+{
 	Com_Printf ("\n------- Input Initialization -------\n");
 	// mouse variables
 	in_mouse = Cvar_Get ("in_mouse", "1", CVAR_ARCHIVE);
@@ -962,21 +911,8 @@ void IN_ActivateMouse( void )
     if (!mouse_avail || !eglDisplay)
         return;
 
-	if (!mouse_active) {
-// TODO: comment this first
-// zongzong.yan
-#if 0
-		if (!in_nograb->value)
-			install_grabs();
-		else if (in_dgamouse->value) // force dga mouse to -1 if using nograb
-#endif
-        // Open channel to App Thread for sharing device input commands
-//        jvmfd = open( "/services/jvm", O_RDWR );
-//        if( -1 == jvmfd ) {
-//            Sys_Error("Error, could not open channel to app thread!");
-//        }
-// __QNXNTO__ TODO input
-
+	if (!mouse_active)
+	{
 		ri.Cvar_Set("in_dgamouse", "0");
 		mouse_active = qtrue;
 	}
@@ -1007,7 +943,7 @@ void IN_Shutdown(void)
 }
 
 
-static char *LateKey(int scancode, int *key)
+static char* LateKey(int scancode, int *key)
 {
 	static char buf[4];
 
@@ -1020,114 +956,11 @@ static char *LateKey(int scancode, int *key)
 	
 	switch (scancode)
 	{
-	    /*case VDK_PAD_9:  *key = K_KP_PGUP; break;
-	    case VDK_PGUP:   *key = K_PGUP; break;
-
-	    case VDK_PAD_3: *key = K_KP_PGDN; break;
-	    case VDK_PGDN:  *key = K_PGDN; break;
-
-	    case VDK_PAD_7: *key = K_KP_HOME; break;
-	    case VDK_HOME:  *key = K_HOME; break;
-
-	    case VDK_PAD_1:   *key = K_KP_END; break;
-	    case VDK_END:   *key = K_END; break;
-
-	    case VDK_PAD_4: *key = K_KP_LEFTARROW; break;
-	    case VDK_LEFT:  *key = K_LEFTARROW; break;
-
-	    case VDK_PAD_6: *key = K_KP_RIGHTARROW; break;
-	    case VDK_RIGHT:  *key = K_RIGHTARROW;    break;
-
-	    case VDK_PAD_2:    *key = K_KP_DOWNARROW; break;
-	    case VDK_DOWN:  *key = K_DOWNARROW; break;
-
-	    case VDK_PAD_8:    *key = K_KP_UPARROW; break;
-	    case VDK_UP:    *key = K_UPARROW;   break;
-
-	    case VDK_PAD_ENTER: *key = K_KP_ENTER;  break;
-
-	    case VDK_TAB:    *key = K_TAB;      break;
-
-	    case VDK_F1:    *key = K_F1;       break;
-
-	    case VDK_F2:    *key = K_F2;       break;
-
-	    case VDK_F3:    *key = K_F3;       break;
-
-	    case VDK_F4:    *key = K_F4;       break;
-
-	    case VDK_F5:    *key = K_F5;       break;
-
-	    case VDK_F6:    *key = K_F6;       break;
-
-	    case VDK_F7:    *key = K_F7;       break;
-
-	    case VDK_F8:    *key = K_F8;       break;
-
-	    case VDK_F9:    *key = K_F9;       break;
-
-	    case VDK_F10:    *key = K_F10;      break;
-
-	    case VDK_F11:    *key = K_F11;      break;
-
-	    case VDK_F12:    *key = K_F12;      break;
-
-		    // bk001206 - from Ryan's Fakk2 
-		    //case VDK_BackSpace: *key = 8; break; // ctrl-h
-	    case VDK_BACKSPACE: *key = K_BACKSPACE; break; // ctrl-h
-
-	    case VDK_PAD_PERIOD: *key = K_KP_DEL; break;
-
-	    case VDK_DELETE: *key = K_DEL; break; 
-	    case VDK_BREAK:  *key = K_PAUSE;    break;
-
-	    case VDK_LSHIFT:
-	    case VDK_RSHIFT:  *key = K_SHIFT;   break;
-
-	    case VDK_LCTRL: 
-	    case VDK_RCTRL:  *key = K_CTRL;  break;
-
-	    case VDK_LALT:  
-	    case VDK_RALT: *key = K_ALT;     break;
-
-	    case VDK_PAD_5: *key = K_KP_5;  break;
-
-	    case VDK_INSERT:   *key = K_INS; break;
-	    case VDK_PAD_0: *key = K_KP_INS; break;
-
-	    case VDK_PAD_ASTERISK: *key = '*'; break;
-	    case VDK_PAD_PLUS:  *key = K_KP_PLUS; break;
-	    case VDK_PAD_HYPHEN: *key = K_KP_MINUS; break;
-	    case VDK_PAD_SLASH: *key = K_KP_SLASH; break;
-
-		    // bk001130 - from cvs1.17 (mkv)
-	    case VDK_1: *key = '1'; break;
-	    case VDK_2: *key = '2'; break;
-	    case VDK_3: *key = '3'; break;
-	    case VDK_4: *key = '4'; break;
-	    case VDK_5: *key = '5'; break;
-	    case VDK_6: *key = '6'; break;
-	    case VDK_7: *key = '7'; break;
-	    case VDK_8: *key = '8'; break;
-	    case VDK_9: *key = '9'; break;
-	    case VDK_0: *key = '0'; break;
-	
-	    // weird french keyboards ..
-	    // NOTE: console toggle is hardcoded in cl_keys.c, can't be unbound
-	    //   cleaner would be .. using hardware key codes instead of the key syms
-	    //   could also add a new K_KP_CONSOLE
-	    case VDK_SINGLEQUOTE: *key = '~'; break;*/
-//__QNXNTO__ todo: add QNX input
-//        case KEY_BACKSPACE: *key = K_BACKSPACE; break;
-//        case KEY_DELETE: *key = K_DEL; break;
-//	    case KEY_ESCAPE: *key = K_ESCAPE;    break;
-//        case KEY_ENTER: *key = K_ENTER;    break;
-//	    case KEY_SPACE: *key = K_SPACE; break;
-//	    case KEY_ALT:  *key = K_CTRL;  break;
-
 	    default:
-		    if (scancode == 0) {
-			    if (com_developer->value) {
+		    if (scancode == 0)
+		    {
+			    if (com_developer->value)
+			    {
 				    ri.Printf(PRINT_ALL, "Warning: scancode: 0\n");
 			    }
 			    return NULL;
@@ -1172,49 +1005,6 @@ static void HandleEvents(void)
 	qboolean dowarp = qfalse;
 	int jmping = 0;
 
-#if 0
-	while(1) {
-		while (!screen_get_event(screen_ctx, screen_ev, freeze ? ~0 : 0)) {
-			rc = screen_get_event_property_iv(screen_ev, SCREEN_PROPERTY_TYPE, &val);
-			if (rc || val == SCREEN_EVENT_NONE) {
-				break;
-			}
-			switch (val) {
-			case SCREEN_EVENT_PROPERTY:
-				screen_get_event_property_iv(screen_ev, SCREEN_PROPERTY_NAME, &prop);
-				if (prop == SCREEN_PROPERTY_VISIBLE) {
-					screen_get_window_property_iv(screen_win, SCREEN_PROPERTY_VISIBLE, &prop);
-					if (prop) {
-						freeze = 0;
-					} else {
-						freeze = 1;
-					}
-				}
-			}
-		}
-		if (!freeze) {
-			break;
-		}
-	}
-
-	screen_get_window_property_iv(screen_win, SCREEN_PROPERTY_SIZE, size);
-	if ((size[0] <= 374) && (size[1] <= 219)) {
-		screen_get_window_property_iv(screen_win, SCREEN_PROPERTY_SOURCE_SIZE, size);
-		if ((size[0] != 374) && (size[1] != 219)) {
-			glConfig.vidWidth = 374;
-			glConfig.vidHeight = 219 * 600 / 768;
-			min = 1;
-		}
-	} else {
-		screen_get_window_property_iv(screen_win, SCREEN_PROPERTY_SOURCE_SIZE, size);
-		if ((size[0] != bz[0]) && (size[1] != bz[1])) {
-			glConfig.vidWidth = bz[0];
-			glConfig.vidHeight = bz[1];
-			max = 1;
-		}
-	}
-
-#else
 	t = Sys_Milliseconds();
 
 	if (jmping)
@@ -1437,16 +1227,18 @@ static void HandleEvents(void)
 				break;
 		}
 	}
-#endif
 }
 
-void Sys_SendKeyEvents (void) {
-	if (!eglDisplay) return;
+void Sys_SendKeyEvents (void)
+{
+	if (!eglDisplay)
+	    return;
 
 	HandleEvents();
 }
 
-void GLimp_EndFrame( void ) {
+void GLimp_EndFrame( void )
+{
 	char 		buffer[500];
 	char		*p;
 	int 		len;
@@ -1461,8 +1253,10 @@ void GLimp_EndFrame( void ) {
 		SwapBuffers();
 	}
 
-	while ( (len = read(ppsfd, buffer, sizeof( buffer ) -1 ) ) >= 0 ) {
-		if ( len == 0 ) {
+	while ( (len = read(ppsfd, buffer, sizeof( buffer ) -1 ) ) >= 0 )
+	{
+		if ( len == 0 )
+		{
 			return;
 		}
 		buffer[len] = '\0';
@@ -1477,26 +1271,6 @@ void GLimp_EndFrame( void ) {
 				Sys_QueEvent( Sys_Milliseconds(), SE_KEY, K_ESCAPE, qtrue, 0, NULL );
 				Sys_QueEvent( Sys_Milliseconds(), SE_KEY, K_ESCAPE, qfalse, 0, NULL );
 			}
-			/*
-			if ( strcmp(msg, "activate") == 0 ) {
-				Com_Printf("pps:orientation\n");
-			}
-			else if ( strcmp(msg, "deactivate") == 0 ) {
-				Com_Printf("pps:orientation\n");
-			}
-			else if ( strcmp(msg, "deflate") == 0 ) {
-				Com_Printf("pps:deflate\n");
-			}
-			else if ( strcmp(msg, "orientation") == 0 ) {
-				Com_Printf("pps:orientation\n");
-			}
-			else if ( strcmp(msg, "exit") == 0 ) {
-				Com_Printf("pps:exit\n");
-			}
-			else if ( strcmp(msg, "invoke") == 0 ) {
-				Com_Printf("pps:invoke\n");
-			}
-			*/
 		}
 	}
 }

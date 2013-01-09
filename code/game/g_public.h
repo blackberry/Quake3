@@ -221,7 +221,7 @@ typedef enum {
 	G_DEBUG_POLYGON_CREATE,
 	G_DEBUG_POLYGON_DELETE,
 	G_REAL_TIME,
-#if defined(RIM_NDK)|| defined(__QNXNTO__)
+#if defined(__QNX__)
 	G_SNAPVECTOR,
 #endif
 
@@ -397,7 +397,7 @@ typedef enum {
 //  G_SNAPVECTOR == CG_SNAPVECTOR, and let PmoveSingle use the function
 //  CG_trap_SnapVector (which is equivalent to G_trap_SnapVector except for
 //  using CG_SNAPVECTOR instead of G_SNAPVECTOR)
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
 #define G_SNAPVECTOR 600
 #endif
 

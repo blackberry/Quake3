@@ -52,11 +52,5 @@ extern botlib_globals_t botlibglobals;
 extern botlib_import_t botimport;
 extern int bot_developer;					//true if developer is on
 
-//
-#ifdef RIM_NDK
-#define Sys_MilliSeconds Sys_Milliseconds
-#elif __QNXNTO__
 int Sys_MilliSeconds(void);
-#else
-int Sys_MilliSeconds(void);
-#endif
+

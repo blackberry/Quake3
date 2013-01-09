@@ -42,14 +42,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "be_aas_funcs.h"
 #include "be_aas_def.h"
 
-#ifdef RIM_NDK
-#define Sys_MilliSeconds Sys_Milliseconds
-#elif __QNXNTO__
 extern int Sys_MilliSeconds(void);
-#else
-extern int Sys_MilliSeconds(void);
-#endif
-
 
 extern botlib_import_t botimport;
 

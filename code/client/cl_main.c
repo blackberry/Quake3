@@ -1048,7 +1048,7 @@ void CL_Setenv_f( void ) {
 			strcat( buffer, " " );
 		}
 
-#if !defined(RIM_NDK) && !defined(__QNXNTO__)
+#if !defined(__QNX__)
 		putenv( buffer );
 #endif
 

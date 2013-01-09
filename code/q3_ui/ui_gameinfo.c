@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // RIM_NDK WARNING!!!! Many function calls have had UI_ prepended to them as defined in ui_local.h
 
 #include "ui_local.h"
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
 #include "../qcommon/qcommon.h"
 #endif
 

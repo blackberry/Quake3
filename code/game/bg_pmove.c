@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "q_shared.h"
 #include "bg_public.h"
 #include "bg_local.h"
-#if defined(RIM_NDK)|| defined(__QNXNTO__)
+#if defined(__QNX__)
 #include "../qcommon/qcommon.h"
 #endif
 
@@ -1834,7 +1834,7 @@ PmoveSingle
 
 ================
 */
-#if defined(RIM_NDK)|| defined(__QNXNTO__)
+#if defined(__QNX__)
     void CG_trap_SnapVector( float *v );
 #else
     void trap_SnapVector( float *v );
@@ -2019,7 +2019,7 @@ void PmoveSingle (pmove_t *pmove) {
 	PM_WaterEvents();
 
 	// snap some parts of playerstate to save network bandwidth
-#if defined(RIM_NDK)|| defined(__QNXNTO__)
+#if defined(__QNX__)
     CG_trap_SnapVector( pm->ps->velocity );
 #else
 	trap_SnapVector( pm->ps->velocity );

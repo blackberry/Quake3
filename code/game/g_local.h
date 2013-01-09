@@ -765,7 +765,7 @@ extern	vmCvar_t	g_enableBreath;
 extern	vmCvar_t	g_singlePlayer;
 extern	vmCvar_t	g_proxMineTimeout;
 
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
 void	G_trap_Printf( const char *fmt );
 void	G_trap_Error( const char *fmt );
 int		G_trap_Milliseconds( void );

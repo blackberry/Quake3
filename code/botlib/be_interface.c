@@ -79,9 +79,7 @@ int botlibsetup = qfalse;
 // Changes Globals:		-
 //===========================================================================
 
-#ifndef RIM_NDK
-#ifdef __QNXNTO__
-#endif
+
 int Sys_MilliSeconds(void)
 {
 #if defined(UNDER_CE)
@@ -90,7 +88,6 @@ int Sys_MilliSeconds(void)
 	return clock() * 1000 / CLOCKS_PER_SEC;
 #endif
 } //end of the function Sys_MilliSeconds
-#endif
 
 //===========================================================================
 //

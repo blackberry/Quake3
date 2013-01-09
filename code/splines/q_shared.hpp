@@ -761,12 +761,7 @@ drawVertMesh_t *SubdivideMapPatch( const mapPatch_t *patch, float maxError );
 	extern "C" {
 #endif
 
-#ifdef RIM_NDK
-#include <sys/log.h>
-#define Com_Printf(str, ...) log_printf(LOG_CRITICAL, str, ##__VA_ARGS__)
-void 		QDECL Com_DPrintf( const char *fmt, ... );
-void 		QDECL Com_Error( int code, const char *fmt, ... );
-#elif __QNXNTO__
+#ifdef __QNX__
 #define Com_Printf(str, ...) fprintf(stderr, str, ##__VA_ARGS__)
 void 		QDECL Com_DPrintf( const char *fmt, ... );
 void 		QDECL Com_Error( int code, const char *fmt, ... );

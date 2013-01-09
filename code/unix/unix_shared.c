@@ -29,10 +29,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <sys/time.h>
 #include <math.h>
 
-#if !defined(RIM_NDK) && (__QNXNTO__)
-#include <pwd.h>
-#endif
-
 #include "../game/q_shared.h"
 #include "../qcommon/qcommon.h"
 
@@ -154,7 +150,7 @@ long fastftol( float f ) { // bk001213 - from win32/win_shared.c
 
 void Sys_SnapVector( float *v ) { // bk001213 - see win32/win_shared.c
   // bk001213 - old linux
-#if !defined(RIM_NDK) && !defined(__QNXNTO__)
+#if !defined(__QNX__)
   v[0] = rint(v[0]);
   v[1] = rint(v[1]);
   v[2] = rint(v[2]);
@@ -423,7 +419,7 @@ void Sys_ShowConsole( int visLevel, qboolean quitOnClose )
 
 char *Sys_GetCurrentUser( void )
 {
-#if !defined(RIM_NDK) && !defined(__QNXNTO__)
+#if !defined(__QNX__)
 	struct passwd *p;
 
 	if ( (p = getpwuid( getuid() )) == NULL ) {

@@ -32,18 +32,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 // msg.c
 //
-#ifdef RIM_NDK
-typedef struct {
-	qboolean	allowoverflow;	// if false, do a Com_Error
-	qboolean	overflowed;		// set to true if the buffer size failed (with allowoverflow set)
-	qboolean	oob;			// set to true if the buffer size failed (with allowoverflow set)
-	byte	*data;
-	int		maxsize;
-	int		cursize;
-	int		readcount;
-	int		bit;				// for bitwise reads and writes
-} qmsg_t;
-#elif __QNXNTO__
+#ifdef __QNX__
 typedef struct {
 	qboolean	allowoverflow;	// if false, do a Com_Error
 	qboolean	overflowed;		// set to true if the buffer size failed (with allowoverflow set)
@@ -709,12 +698,7 @@ void		Info_Print( const char *s );
 
 void		Com_BeginRedirect (char *buffer, int buffersize, void (*flush)(char *));
 void		Com_EndRedirect( void );
-#ifdef RIM_NDK
-#include <sys/log.h>
-#define Com_Printf(str, ...) log_printf(LOG_CRITICAL, str, ##__VA_ARGS__)
-void 		QDECL Com_DPrintf( const char *fmt, ... );
-void 		QDECL Com_Error( int code, const char *fmt, ... );
-#elif __QNXNTO__
+#ifdef __QNX__
 #define Com_Printf(str, ...) fprintf(stderr, str, ##__VA_ARGS__)
 void 		QDECL Com_DPrintf( const char *fmt, ... );
 void 		QDECL Com_Error( int code, const char *fmt, ... );

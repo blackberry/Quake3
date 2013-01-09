@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 	User interface building blocks and support functions.
 **********************************************************************/
 #include "ui_local.h"
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
 #include "../qcommon/qcommon.h"
 #endif
 

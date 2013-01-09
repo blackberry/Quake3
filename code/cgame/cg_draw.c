@@ -1029,7 +1029,7 @@ static void CG_DrawUpperRight( void ) {
 	if ( cg_drawSnapshot.integer ) {
 		y = CG_DrawSnapshot( y );
 	}
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
     y = CG_DrawFPS( y );
 #else
 	if ( cg_drawFPS.integer ) {

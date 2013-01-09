@@ -143,7 +143,7 @@ typedef enum {
 	CG_PC_SOURCE_FILE_AND_LINE,
 	CG_S_STOPBACKGROUNDTRACK,
 	CG_REAL_TIME,
-#if !defined(RIM_NDK) && !defined(__QNXNTO__)
+#if !defined(__QNX__)
 	CG_SNAPVECTOR,
 #endif
 	CG_REMOVECOMMAND,
@@ -192,7 +192,7 @@ typedef enum {
 //  G_SNAPVECTOR == CG_SNAPVECTOR, and let PmoveSingle use the function
 //  CG_trap_SnapVector (which is equivalent to G_trap_SnapVector except for
 //  using CG_SNAPVECTOR instead of G_SNAPVECTOR)
-#if defined(RIM_NDK) || defined(__QNXNTO__)
+#if defined(__QNX__)
 #define CG_SNAPVECTOR 600
 #endif
 /*

@@ -6,10 +6,10 @@
     Specifies parameters for identifying, installing, and launching native applications on BlackBerry Tablet OS.
 
 -->
-
+    
     <!-- A universally unique application identifier. Must be unique across all BlackBerry Tablet OS applications.
          Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-    <id>quake3</id>
+    <id>com.idsoftware.Quake3</id>
 
     <!-- The name that is displayed in the BlackBerry Tablet OS application installer. 
          May have multiple values for each language. See samples or xsd schema file. Optional. -->
@@ -22,84 +22,64 @@
 
     <!-- Fourth digit segment of the package version. First three segments are taken from the 
          <versionNumber> element.  Must be an integer from 0 to 2^16-1 -->
-    <buildId>1</buildId>
-                 
-    <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
-    <!-- <versionLabel></versionLabel> -->
-
-    <!-- Description, displayed in the BlackBerry Tablet OS application installer.
-         May have multiple values for each language. See samples or xsd schema file. Optional. -->
-
-    <!-- Copyright information. Optional. -->
-    <!-- <copyright></copyright> -->
+    <buildId>1</buildId>           
 
     <!--  Name of author which is used for signing. Must match the developer name of your development certificate. -->
     <author>id Software</author>
-    <description>Quake 3</description>
     
     <!--  Unique author ID assigned by signing authority. Required if using debug tokens. -->
     <!-- <authorId>ABC1234YjsnUk235h</authorId> -->
    
     <initialWindow>
+        <aspectRatio>landscape</aspectRatio>
+        <autoOrients>false</autoOrients>
         <systemChrome>none</systemChrome>
         <transparent>false</transparent>
     </initialWindow>
     
-    <!--  The category where the application appears. Either core.games or core.media. -->
+     <!--  The category where the application appears. Either core.games or core.media. -->
     <category>core.games</category>
+    
     <asset path="icon.png">icon.png</asset>
     <asset path="resource/baseq3/pak0.pk3">baseq3/pak0.pk3</asset>
-    <configuration id="com.qnx.qcc.configuration.exe.debug.513359716" name="Device-Debug">
+    
+    <configuration name="Device-Debug">
        <platformArchitecture>armle-v7</platformArchitecture>
-       <asset path="Device-Debug/quake3" entry="true" type="Qnx/Elf">quake3</asset>
+       <asset path="Device-Debug/Quake3" entry="true" type="Qnx/Elf">Quake3</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.release.1191851318" name="Device-Release">
+    <configuration name="Device-Release">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="Device-Release/Quake3" entry="true" type="Qnx/Elf">Quake3</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.profile.2047434418" name="Device-Profile">
+    <configuration name="Device-Profile">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="Device-Profile/Quake3" entry="true" type="Qnx/Elf">Quake3</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.profile.coverage.1968527117" name="Device-Coverage">
+    <configuration name="Device-Coverage">
        <platformArchitecture>armle-v7</platformArchitecture>
        <asset path="Device-Coverage/Quake3" entry="true" type="Qnx/Elf">Quake3</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.debug.1673080274" name="Simulator-Debug">
+    <configuration name="Simulator-Debug">
        <platformArchitecture>x86</platformArchitecture>
        <asset path="Simulator-Debug/Quake3" entry="true" type="Qnx/Elf">Quake3</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.profile.1942537661" name="Simulator-Profile">
+    <configuration name="Simulator-Profile">
        <platformArchitecture>x86</platformArchitecture>
        <asset path="Simulator-Profile/Quake3" entry="true" type="Qnx/Elf">Quake3</asset>
     </configuration>
-    <configuration id="com.qnx.qcc.configuration.exe.profile.coverage.725836059" name="Simulator-Coverage">
+    <configuration name="Simulator-Coverage">
        <platformArchitecture>x86</platformArchitecture>
        <asset path="Simulator-Coverage/Quake3" entry="true" type="Qnx/Elf">Quake3</asset>
     </configuration>
     
-    <!--  The icon for the application, which should be 86x86. -->
+    <!--  The icon for the application, which should be 114x114. -->
     <icon>
         <image>icon.png</image>
     </icon>
-    
-    <!--  The splash screen that will appear when your application is launching. Should be 1024x600. -->
-    <!-- <splashscreen></splashscreen> -->
 
     <!-- Request permission to execute native code.  Required for native applications. -->
     <action system="true">run_native</action>
     <action>access_internet</action>
-    
-    <!--  The permissions requested by your application. -->
-    <!--  <action>access_shared</action> -->
-    <!--  <action>record_audio</action> -->
-    <!--  <action>read_geolocation</action> -->
-    <!--  <action>use_camera</action> -->
-    <!--  <action>access_internet</action> -->
-    <!--  <action>play_audio</action> -->
-    <!--  <action>post_notification</action> -->
-    <!--  <action>set_audio_volume</action> -->
-    <!--  <action>read_device_identifying_information</action> -->
 
     <!-- Ensure that shared libraries in the package are found at run-time. -->
     <env var="LD_LIBRARY_PATH" value="app/native/lib"/>
