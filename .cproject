@@ -74,6 +74,7 @@
 									<listOptionValue builtIn="false" value="screen"/>
 									<listOptionValue builtIn="false" value="socket"/>
 									<listOptionValue builtIn="false" value="pps"/>
+									<listOptionValue builtIn="false" value="bps"/>
 									<listOptionValue builtIn="false" value="asound"/>
 									<listOptionValue builtIn="false" value="OpenAL"/>
 								</option>
@@ -173,24 +174,24 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1690406216" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.951536294" name="cg_effects.c" rcbsApplicability="disable" resourcePath="code/cgame/cg_effects.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.670134956">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.670134956" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.170446904" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.283793514" name="cg_marks.c" rcbsApplicability="disable" resourcePath="code/cgame/cg_marks.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1412204047">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1412204047" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.358308224" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1272262933" name="cg_syscalls.c" rcbsApplicability="disable" resourcePath="code/cgame/cg_syscalls.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1404248706">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1404248706" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1765417927" superClass="com.qnx.qcc.inputType.compiler"/>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.951536294" name="cg_effects.c" rcbsApplicability="disable" resourcePath="code/cgame/cg_effects.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.670134956">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.670134956" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.170446904" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.610594912" name="cg_scoreboard.c" rcbsApplicability="disable" resourcePath="code/cgame/cg_scoreboard.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1054405050">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1054405050" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.2117631606" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1272262933" name="cg_syscalls.c" rcbsApplicability="disable" resourcePath="code/cgame/cg_syscalls.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1404248706">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1404248706" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1765417927" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1380141610" name="cg_view.c" rcbsApplicability="disable" resourcePath="code/cgame/cg_view.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1983685348">
@@ -258,14 +259,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.884693724" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1029337984" name="cl_cin.c" rcbsApplicability="disable" resourcePath="code/client/cl_cin.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.208080991">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.208080991" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1485394802" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.871457683" name="snd_adpcm.c" rcbsApplicability="disable" resourcePath="code/client/snd_adpcm.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.222090142">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.222090142" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.32379774" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1029337984" name="cl_cin.c" rcbsApplicability="disable" resourcePath="code/client/cl_cin.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.208080991">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.208080991" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1485394802" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1473227088" name="snd_main.c" rcbsApplicability="disable" resourcePath="code/client/snd_main.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1148786943">
@@ -273,9 +274,9 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.2029288788" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1508213306" name="cl_net_chan.c" rcbsApplicability="disable" resourcePath="code/client/cl_net_chan.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1271142180">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1271142180" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.2027653006" superClass="com.qnx.qcc.inputType.compiler"/>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.2088260234" name="snd_mix.c" rcbsApplicability="disable" resourcePath="code/client/snd_mix.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1020530489">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1020530489" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1374085498" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1139047995" name="cl_keys.c" rcbsApplicability="disable" resourcePath="code/client/cl_keys.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.923165880">
@@ -283,9 +284,9 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1675444274" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.2088260234" name="snd_mix.c" rcbsApplicability="disable" resourcePath="code/client/snd_mix.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1020530489">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1020530489" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1374085498" superClass="com.qnx.qcc.inputType.compiler"/>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1508213306" name="cl_net_chan.c" rcbsApplicability="disable" resourcePath="code/client/cl_net_chan.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1271142180">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1271142180" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.2027653006" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.87520494" name="cl_scrn.c" rcbsApplicability="disable" resourcePath="code/client/cl_scrn.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1335809056">
@@ -313,19 +314,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.290616296" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.177286778" name="ai_cmd.c" rcbsApplicability="disable" resourcePath="code/game/ai_cmd.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.184358053">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.184358053" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1232939608" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1694808871" name="ai_team.c" rcbsApplicability="disable" resourcePath="code/game/ai_team.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1209305721">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1209305721" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.2070814814" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.39085587" name="g_session.c" rcbsApplicability="disable" resourcePath="code/game/g_session.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1936792363">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1936792363" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1962378569" superClass="com.qnx.qcc.inputType.compiler"/>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.177286778" name="ai_cmd.c" rcbsApplicability="disable" resourcePath="code/game/ai_cmd.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.184358053">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.184358053" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1232939608" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.12094519" name="g_team.c" rcbsApplicability="disable" resourcePath="code/game/g_team.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.402519598">
@@ -333,14 +329,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1592124794" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.39085587" name="g_session.c" rcbsApplicability="disable" resourcePath="code/game/g_session.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1936792363">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1936792363" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1962378569" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1206331765" name="g_items.c" rcbsApplicability="disable" resourcePath="code/game/g_items.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1765032640">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1765032640" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.65568337" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.505345632" name="bg_misc.c" rcbsApplicability="disable" resourcePath="code/game/bg_misc.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1019697514">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1019697514" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.840959180" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1267375456" name="g_target.c" rcbsApplicability="disable" resourcePath="code/game/g_target.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1000712347">
@@ -348,19 +344,24 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.449753297" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.505345632" name="bg_misc.c" rcbsApplicability="disable" resourcePath="code/game/bg_misc.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1019697514">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1019697514" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.840959180" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1954770061" name="g_mover.c" rcbsApplicability="disable" resourcePath="code/game/g_mover.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.935115757">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.935115757" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1703163452" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1641333417" name="g_main.c" rcbsApplicability="disable" resourcePath="code/game/g_main.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2017955978">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.2017955978" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1315121803" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1579773579" name="g_spawn.c" rcbsApplicability="disable" resourcePath="code/game/g_spawn.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.951427305">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.951427305" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1584834928" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1641333417" name="g_main.c" rcbsApplicability="disable" resourcePath="code/game/g_main.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2017955978">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.2017955978" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1315121803" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1503442494" name="ai_dmnet.c" rcbsApplicability="disable" resourcePath="code/game/ai_dmnet.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.543162314">
@@ -433,24 +434,24 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1779906052" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1613373736" name="bg_pmove.c" rcbsApplicability="disable" resourcePath="code/game/bg_pmove.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1132526920">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1132526920" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.904919178" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.506507201" name="g_client.c" rcbsApplicability="disable" resourcePath="code/game/g_client.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1810507083">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1810507083" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.618677810" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1487827713" name="ai_chat.c" rcbsApplicability="disable" resourcePath="code/game/ai_chat.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1132045621">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1132045621" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1598729673" superClass="com.qnx.qcc.inputType.compiler"/>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1613373736" name="bg_pmove.c" rcbsApplicability="disable" resourcePath="code/game/bg_pmove.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1132526920">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1132526920" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.904919178" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.826657613" name="g_bot.c" rcbsApplicability="disable" resourcePath="code/game/g_bot.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.233910753">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.233910753" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.604587451" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1487827713" name="ai_chat.c" rcbsApplicability="disable" resourcePath="code/game/ai_chat.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1132045621">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1132045621" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1598729673" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.762829581" name="g_syscalls.c" rcbsApplicability="disable" resourcePath="code/game/g_syscalls.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1496133900">
@@ -538,14 +539,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1247810326" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.660722590" name="cm_patch.c" rcbsApplicability="disable" resourcePath="code/qcommon/cm_patch.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.289149276">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.289149276" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.621609707" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.979208711" name="vm_arm.c" rcbsApplicability="disable" resourcePath="code/qcommon/vm_arm.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.824188707">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.824188707" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1687766266" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.660722590" name="cm_patch.c" rcbsApplicability="disable" resourcePath="code/qcommon/cm_patch.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.289149276">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.289149276" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.621609707" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.200140991" name="md4.c" rcbsApplicability="disable" resourcePath="code/qcommon/md4.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1461992568">
@@ -563,14 +564,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.617129440" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.2057149051" name="be_ai_char.c" rcbsApplicability="disable" resourcePath="code/botlib/be_ai_char.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.510612757">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.510612757" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1974446894" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1298236111" name="be_aas_file.c" rcbsApplicability="disable" resourcePath="code/botlib/be_aas_file.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1691654941">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1691654941" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1381151037" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.2057149051" name="be_ai_char.c" rcbsApplicability="disable" resourcePath="code/botlib/be_ai_char.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.510612757">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.510612757" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1974446894" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1159104004" name="be_aas_entity.c" rcbsApplicability="disable" resourcePath="code/botlib/be_aas_entity.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2091223419">
@@ -578,14 +579,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.511257557" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.957958160" name="l_precomp.c" rcbsApplicability="disable" resourcePath="code/botlib/l_precomp.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.10938149">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.10938149" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1505379075" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.565090228" name="l_libvar.c" rcbsApplicability="disable" resourcePath="code/botlib/l_libvar.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.227213689">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.227213689" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1622809786" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.957958160" name="l_precomp.c" rcbsApplicability="disable" resourcePath="code/botlib/l_precomp.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.10938149">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.10938149" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1505379075" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.2066252954" name="l_script.c" rcbsApplicability="disable" resourcePath="code/botlib/l_script.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.181637859">
@@ -713,24 +714,24 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1229264034" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1899004750" name="sv_client.c" rcbsApplicability="disable" resourcePath="code/server/sv_client.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2030261232">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.2030261232" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.558123027" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1850793239" name="sv_world.c" rcbsApplicability="disable" resourcePath="code/server/sv_world.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.732512290">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.732512290" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.83836633" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1681545417" name="sv_ccmds.c" rcbsApplicability="disable" resourcePath="code/server/sv_ccmds.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1053573869">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1053573869" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.6597546" superClass="com.qnx.qcc.inputType.compiler"/>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1899004750" name="sv_client.c" rcbsApplicability="disable" resourcePath="code/server/sv_client.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2030261232">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.2030261232" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.558123027" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1813746752" name="sv_game.c" rcbsApplicability="disable" resourcePath="code/server/sv_game.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1257968382">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1257968382" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1596262741" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1681545417" name="sv_ccmds.c" rcbsApplicability="disable" resourcePath="code/server/sv_ccmds.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1053573869">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1053573869" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.6597546" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.340720472" name="sv_bot.c" rcbsApplicability="disable" resourcePath="code/server/sv_bot.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.575854712">
@@ -783,14 +784,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1526808444" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.26099853" name="ui_spskill.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_spskill.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.351240980">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.351240980" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.923961687" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1644495947" name="ui_startserver.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_startserver.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.420542287">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.420542287" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.291624671" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.26099853" name="ui_spskill.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_spskill.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.351240980">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.351240980" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.923961687" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.682776478" name="ui_sppostgame.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_sppostgame.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1828097342">
@@ -798,14 +799,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.895187877" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1431691585" name="ui_confirm.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_confirm.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1236980432">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1236980432" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.2041891211" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1315992339" name="ui_display.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_display.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2112727356">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.2112727356" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.2122168716" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1431691585" name="ui_confirm.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_confirm.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1236980432">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1236980432" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.2041891211" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1749403470" name="ui_addbots.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_addbots.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.471767952">
@@ -903,14 +904,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1052026276" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1729362561" name="ui_specifyserver.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_specifyserver.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1462409160">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1462409160" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.920116263" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1990134280" name="ui_menu.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_menu.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2037991866">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.2037991866" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1861439132" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1729362561" name="ui_specifyserver.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_specifyserver.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1462409160">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1462409160" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.920116263" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1106649518" name="ui_options.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_options.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2065824174">
@@ -918,24 +919,24 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.189358954" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1698011789" name="ui_players.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_players.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.660987694">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.660987694" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.2028927319" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.847160569" name="ui_mods.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_mods.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1912081584">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1912081584" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.364097930" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.853158704" name="ui_playermodel.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_playermodel.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2018884696">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.2018884696" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.46120187" superClass="com.qnx.qcc.inputType.compiler"/>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1698011789" name="ui_players.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_players.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.660987694">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.660987694" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.2028927319" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1989988116" name="ui_connect.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_connect.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.793925426">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.793925426" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1064553687" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.853158704" name="ui_playermodel.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_playermodel.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2018884696">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.2018884696" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.46120187" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.862259128" name="ui_main.c" rcbsApplicability="disable" resourcePath="code/q3_ui/ui_main.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.912295691">
@@ -1013,14 +1014,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1623497337" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.51332156" name="tr_shader.c" rcbsApplicability="disable" resourcePath="code/renderer/tr_shader.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.100082647">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.100082647" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1812541779" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1290228083" name="tr_scene.c" rcbsApplicability="disable" resourcePath="code/renderer/tr_scene.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1037085182">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1037085182" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.452696828" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.51332156" name="tr_shader.c" rcbsApplicability="disable" resourcePath="code/renderer/tr_shader.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.100082647">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.100082647" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1812541779" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.513067542" name="tr_curve.c" rcbsApplicability="disable" resourcePath="code/renderer/tr_curve.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.232461582">
@@ -1038,14 +1039,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1042065059" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1106444198" name="tr_animation.c" rcbsApplicability="disable" resourcePath="code/renderer/tr_animation.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.952918236">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.952918236" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1027982151" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1952158459" name="tr_surface.c" rcbsApplicability="disable" resourcePath="code/renderer/tr_surface.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1925541883">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1925541883" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1035462750" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1106444198" name="tr_animation.c" rcbsApplicability="disable" resourcePath="code/renderer/tr_animation.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.952918236">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.952918236" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1027982151" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1966861628" name="tr_sky.c" rcbsApplicability="disable" resourcePath="code/renderer/tr_sky.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.923846275">
@@ -1068,9 +1069,9 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.533080461" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.857539819" name="jdcoefct.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdcoefct.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.417621287">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.417621287" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.298937208" superClass="com.qnx.qcc.inputType.compiler"/>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1626890529" name="jdmarker.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdmarker.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1173549800">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.1173549800" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1427044886" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.132504925" name="jdatadst.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdatadst.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.149390182">
@@ -1078,9 +1079,9 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1695579056" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1626890529" name="jdmarker.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdmarker.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1173549800">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.1173549800" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1427044886" superClass="com.qnx.qcc.inputType.compiler"/>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.857539819" name="jdcoefct.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdcoefct.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.417621287">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.417621287" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.298937208" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.668952332" name="jidctflt.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jidctflt.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1691839577">
@@ -1088,14 +1089,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.238522110" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1654379123" name="jdsample.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdsample.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2108291262">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.2108291262" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1018456650" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.174827806" name="jerror.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jerror.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.485695681">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.485695681" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.989692122" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1654379123" name="jdsample.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdsample.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.2108291262">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.2108291262" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1018456650" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1316593974" name="jfdctint.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jfdctint.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1477902528">
@@ -1103,14 +1104,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.267564732" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1212778315" name="jccolor.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jccolor.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.552246935">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.552246935" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.459937037" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1548710329" name="jcparam.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jcparam.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1392985137">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1392985137" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.417609343" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1212778315" name="jccolor.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jccolor.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.552246935">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.552246935" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.459937037" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.45637132" name="jdinput.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdinput.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1625552563">
@@ -1178,14 +1179,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.414880171" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.953129609" name="jdatasrc.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdatasrc.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.536067860">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.536067860" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1923073265" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1937726858" name="jidctred.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jidctred.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1797611670">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1797611670" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1468382714" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.953129609" name="jdatasrc.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdatasrc.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.536067860">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.536067860" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1923073265" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.800083578" name="jcprepct.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jcprepct.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1218769816">
@@ -1228,14 +1229,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1061194606" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1145853375" name="jdmainct.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdmainct.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.730092271">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.730092271" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1762156548" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.353278442" name="jdtrans.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdtrans.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1373640924">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1373640924" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.832002689" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1145853375" name="jdmainct.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdmainct.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.730092271">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.730092271" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1762156548" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1221715610" name="jdpostct.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdpostct.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.72772329">
@@ -1243,14 +1244,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.1735626142" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1089197954" name="jdhuff.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdhuff.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.717539501">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.717539501" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1139212380" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1785949352" name="jcmarker.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jcmarker.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1557758028">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.1557758028" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.1545351814" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1089197954" name="jdhuff.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdhuff.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.717539501">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.717539501" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1139212380" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.1307829035" name="jdcolor.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jdcolor.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1255686872">
@@ -1268,14 +1269,14 @@
 							<inputType id="com.qnx.qcc.inputType.compiler.2071580268" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
-					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.491562902" name="jmemmgr.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jmemmgr.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.324767341">
-						<tool id="com.qnx.qcc.tool.compiler.723290734.324767341" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
-							<inputType id="com.qnx.qcc.inputType.compiler.1925943249" superClass="com.qnx.qcc.inputType.compiler"/>
-						</tool>
-					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.161163427" name="jcapimin.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jcapimin.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.492883612">
 						<tool id="com.qnx.qcc.tool.compiler.723290734.492883612" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
 							<inputType id="com.qnx.qcc.inputType.compiler.2098147306" superClass="com.qnx.qcc.inputType.compiler"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.491562902" name="jmemmgr.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jmemmgr.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.324767341">
+						<tool id="com.qnx.qcc.tool.compiler.723290734.324767341" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler.723290734">
+							<inputType id="com.qnx.qcc.inputType.compiler.1925943249" superClass="com.qnx.qcc.inputType.compiler"/>
 						</tool>
 					</fileInfo>
 					<fileInfo id="com.qnx.qcc.configuration.exe.debug.513359716.139156825" name="jutils.c" rcbsApplicability="disable" resourcePath="code/jpeg-6/jutils.c" toolsToInvoke="com.qnx.qcc.tool.compiler.723290734.1945333899">
@@ -1371,6 +1372,7 @@
 									<listOptionValue builtIn="false" value="screen"/>
 									<listOptionValue builtIn="false" value="socket"/>
 									<listOptionValue builtIn="false" value="pps"/>
+									<listOptionValue builtIn="false" value="bps"/>
 									<listOptionValue builtIn="false" value="asound"/>
 									<listOptionValue builtIn="false" value="OpenAL"/>
 								</option>
@@ -1463,6 +1465,7 @@
 									<listOptionValue builtIn="false" value="screen"/>
 									<listOptionValue builtIn="false" value="socket"/>
 									<listOptionValue builtIn="false" value="pps"/>
+									<listOptionValue builtIn="false" value="bps"/>
 									<listOptionValue builtIn="false" value="asound"/>
 									<listOptionValue builtIn="false" value="OpenAL"/>
 								</option>
@@ -1557,6 +1560,7 @@
 									<listOptionValue builtIn="false" value="screen"/>
 									<listOptionValue builtIn="false" value="socket"/>
 									<listOptionValue builtIn="false" value="pps"/>
+									<listOptionValue builtIn="false" value="bps"/>
 									<listOptionValue builtIn="false" value="asound"/>
 									<listOptionValue builtIn="false" value="OpenAL"/>
 								</option>
@@ -1648,6 +1652,7 @@
 									<listOptionValue builtIn="false" value="screen"/>
 									<listOptionValue builtIn="false" value="socket"/>
 									<listOptionValue builtIn="false" value="pps"/>
+									<listOptionValue builtIn="false" value="bps"/>
 									<listOptionValue builtIn="false" value="asound"/>
 									<listOptionValue builtIn="false" value="OpenAL"/>
 								</option>
@@ -1741,6 +1746,7 @@
 									<listOptionValue builtIn="false" value="screen"/>
 									<listOptionValue builtIn="false" value="socket"/>
 									<listOptionValue builtIn="false" value="pps"/>
+									<listOptionValue builtIn="false" value="bps"/>
 									<listOptionValue builtIn="false" value="asound"/>
 									<listOptionValue builtIn="false" value="OpenAL"/>
 								</option>
@@ -1834,6 +1840,7 @@
 									<listOptionValue builtIn="false" value="screen"/>
 									<listOptionValue builtIn="false" value="socket"/>
 									<listOptionValue builtIn="false" value="pps"/>
+									<listOptionValue builtIn="false" value="bps"/>
 									<listOptionValue builtIn="false" value="asound"/>
 									<listOptionValue builtIn="false" value="OpenAL"/>
 								</option>

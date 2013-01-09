@@ -27,29 +27,46 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define FALSE 0
 #define TRUE 1
 #include <EGL/egl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/keycodes.h>
 #include <screen/screen.h>
 #include <input/screen_helpers.h>
 #include <gestures/set.h>
 #include <gestures/types.h>
-#include <sys/keycodes.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/pps.h>
+#include <gestures/set.h>
+#include <gestures/swipe.h>
+#include <gestures/pinch.h>
+#include <gestures/tap.h>
+#include <bps/bps.h>
+#include <bps/event.h>
+#include <bps/screen.h>
+#include <bps/navigator.h>
+#include <bps/sensor.h>
+#include <bps/orientation.h>
+#include <bps/virtualkeyboard.h>
+
 screen_context_t screen_ctx;
 screen_event_t screen_ev;
 screen_window_t screen_win;
-int ppsfd;
-pps_decoder_t decoder;
+
 int bz[2];
 #endif
+
+#define PI 3.14159f
+#define NUM_VERT 100
+#define RESOLUTION_WIDTH 1024
+#define RESOLUTION_HEIGHT 768
+
 extern backEndState_t	backEnd;
 extern void RB_SetGL2D (void);
 
 static cvar_t *in_mouse;
-static cvar_t *in_dgamouse; // user pref for dga mouse
+static cvar_t *in_dgamouse;
 cvar_t *in_subframe;
-cvar_t *in_nograb; // this is strictly for developers
+cvar_t *in_nograb;
 
 static qboolean mouse_avail;
 static qboolean mouse_active = qfalse;
@@ -58,19 +75,15 @@ static EGLDisplay eglDisplay = EGL_NO_DISPLAY;
 static EGLContext eglContext = EGL_NO_CONTEXT;
 static EGLSurface eglSurface = EGL_NO_SURFACE;
 
-cvar_t  *r_allowSoftwareGL;   // don't abort out if the pixelformat claims software
+cvar_t  *r_allowSoftwareGL;
 cvar_t  *r_previousglDriver;
 
 int min = 0;
 int max = 0;
-
-#define PI 3.14159f
-#define NUM_VERT 100
 static int movX, movY, movBoundX, movBoundY, movRad, movBoundRad, r1square, r2square;
 static int jmpBoundX, jmpBoundY, jmpBoundRad;
 static int fireBoundX, fireBoundY, fireBoundRad;
-static int weaponNextX, weaponNextY, weaponNextRad;
-//static int weaponPrevX, weaponPrevY, weaponPrevRad;
+static int weaponNextX, weaponNextY, weaponNextRad;;
 
 static GLfloat* vert;
 int setup_vert = 0;
@@ -419,13 +432,21 @@ static void InitControls(void)
 	weaponNextY = (glConfig.vidHeight * 76) / 100;
 	weaponNextRad = glConfig.vidWidth * 0.030f;
 
-	r1square = movBoundRad * movBoundRad; //100 * glConfig.vidWidth * glConfig.vidWidth / 10000;
-	r2square = fireBoundRad * fireBoundRad; //25 * glConfig.vidWidth * glConfig.vidWidth / 10000;
+	r1square = movBoundRad * movBoundRad;
+	r2square = fireBoundRad * fireBoundRad;
 }
 
 int BLACKBERRY_InitGL(void)
 {
+    bps_initialize();
+    navigator_request_events(0);
+
+#ifdef __X86__
     int usage = SCREEN_USAGE_OPENGL_ES1;
+#else
+    // Physical device copy directly into physical display
+    int usage = SCREEN_USAGE_DISPLAY|SCREEN_USAGE_OPENGL_ES1;
+#endif
 	int transp = SCREEN_TRANSPARENCY_NONE;
 	EGLint interval = 1;
 	int size[2] = { -1, -1 };
@@ -433,9 +454,9 @@ int BLACKBERRY_InitGL(void)
 	int nbuffers = 2;
 	int format;
 	EGLConfig config;
-    EGLint           err;
+    EGLint err;
 
-    config = choose_config(eglDisplay, "rgb565");
+    config = choose_config(eglDisplay, "rgba8888");
     if (config == (EGLConfig)0) {
         Com_Printf( "Demo Thread Init: failed to find config!" );
         return FALSE;
@@ -469,16 +490,14 @@ int BLACKBERRY_InitGL(void)
 		return FALSE;
 	}
 
-
-
 	err = screen_set_window_property_iv(screen_win, SCREEN_PROPERTY_USAGE, &usage);
 	if (err) {
 		Com_Printf("screen_set_window_property_iv(SCREEN_PROPERTY_USAGE)");
 		return FALSE;
 	}
 
-	size[0]=1024;
-	size[1]=768;
+	size[0]=RESOLUTION_WIDTH;
+	size[1]=RESOLUTION_HEIGHT;
 
 	err = screen_set_window_property_iv(screen_win, SCREEN_PROPERTY_BUFFER_SIZE, size);
 	if (err) {
@@ -534,8 +553,8 @@ int BLACKBERRY_InitGL(void)
 		return FALSE;
 	}
 
-	size[0] = 1280;//1024;
-	size[1] = 768; //600;
+	size[0] = RESOLUTION_WIDTH;
+	size[1] = RESOLUTION_HEIGHT;
 	err = screen_set_window_property_iv(screen_win, SCREEN_PROPERTY_SIZE, size);
 	if (err) {
 		Com_Printf("screen_set_window_property_iv(SCREEN_PROPERTY_SIZE)");
@@ -547,6 +566,7 @@ int BLACKBERRY_InitGL(void)
 		Com_Printf("screen_create_event");
 		return FALSE;
 	}
+	screen_request_events(screen_ctx);
 
 	eglSurface = eglCreateWindowSurface(eglDisplay, config, screen_win, NULL);
 	if (eglSurface == EGL_NO_SURFACE) {
@@ -561,11 +581,6 @@ int BLACKBERRY_InitGL(void)
 		return FALSE;
 	}
 
-	pps_decoder_init(&decoder, NULL, 0);
-	ppsfd = open("/pps/services/navigator/control", O_RDWR);
-	if (ppsfd == -1) {
-		Com_Printf("warning: failed to open PPS\n");
-	}
     return TRUE;
 }
 
@@ -630,16 +645,13 @@ void SwapBuffers( void )
 	if (!setup_vert)
 	{
 		vert = (GLfloat*)malloc(2*(NUM_VERT+2) * sizeof(GLfloat));
-
 		vert[0] = 0;
 		vert[1] = 0;
-
 		for (i = 0; i < NUM_VERT+1; i+=2)
 		{
 			vert[i+2] = (GLfloat)(sinf(2 * PI / NUM_VERT * i)) * 600 / 768;
 			vert[i+3] = (GLfloat)(cosf(2 * PI / NUM_VERT * i));
 		}
-
 		setup_vert = 1;
 	}
 
@@ -657,7 +669,6 @@ void SwapBuffers( void )
 
 		glEnable(GL_TEXTURE_2D);
 	}
-
 	eglSwapBuffers(eglDisplay, eglSurface);
 	err = eglGetError( );
 	if (err != EGL_SUCCESS ) {
@@ -698,33 +709,24 @@ static qboolean LoadOpenGL( const char *name )
         ri.Printf( PRINT_ALL, "FAILURE: InitGL failed in this mode\n" );
         return qfalse;
 	}
-
 	return qtrue;
 }
 
 void GLimp_Init( void )
 {
-//    qboolean success = qfalse;
 	char  buf[1024];
 	cvar_t *lastValidRenderer = ri.Cvar_Get( "r_lastValidRenderer", "(uninitialized)", CVAR_ARCHIVE );
-
 	r_allowSoftwareGL = ri.Cvar_Get( "r_allowSoftwareGL", "0", CVAR_LATCH );
-
 	r_previousglDriver = ri.Cvar_Get( "r_previousglDriver", "", CVAR_ROM );
-
-//	InitSig();
 
 	// Hack here so that if the UI 
 	if ( *r_previousglDriver->string )
 	{
-		// The UI changed it on us, hack it back
-		// This means the renderer can't be changed on the fly
+		// The UI changed it on us, hack it back, this means the renderer can't be changed on the fly
 		ri.Cvar_Set( "r_glDriver", r_previousglDriver->string );
 	}
 	
-	//
-	// load and initialize the specific OpenGL driver
-	//
+	// Load and initialize the specific OpenGL driver
 	if ( !LoadOpenGL( r_glDriver->string ) ) {
 		return;
 	}
@@ -782,26 +784,6 @@ void GLimp_Init( void )
 		}
 	}
 
-	//
-	// this is where hardware specific workarounds that should be
-	// detected/initialized every startup should go.
-	//
-	if ( Q_stristr( buf, "banshee" ) || Q_stristr( buf, "Voodoo_Graphics" ) )
-	{
-		glConfig.hardwareType = GLHW_3DFX_2D3D;
-	} else if ( Q_stristr( buf, "rage pro" ) || Q_stristr( buf, "RagePro" ) )
-	{
-		glConfig.hardwareType = GLHW_RAGEPRO;
-	} else if ( Q_stristr( buf, "permedia2" ) )
-	{
-		glConfig.hardwareType = GLHW_PERMEDIA2;
-	} else if ( Q_stristr( buf, "riva 128" ) )
-	{
-		glConfig.hardwareType = GLHW_RIVA128;
-	} else if ( Q_stristr( buf, "riva tnt " ) )
-	{
-	}
-
 	ri.Cvar_Set( "r_lastValidRenderer", glConfig.renderer_string );
 
 	return;
@@ -835,6 +817,9 @@ void GLimp_Shutdown( void )
 	eglDestroyContext(eglDisplay, eglContext);
 	eglTerminate(eglDisplay);
 	eglReleaseThread();
+
+    screen_stop_events(screen_ctx);
+    bps_shutdown();
 
 	eglDisplay = NULL;
 	eglContext = NULL;
@@ -874,17 +859,15 @@ void GLimp_WakeRenderer( void *data )
 {
 }
 
-
-
 qboolean QGL_Init( const char *dllname )
 {
+
 	return qtrue;
 }
 
 void QGL_Shutdown( void )
 {
 }
-
 
 void IN_Init( void )
 {
@@ -918,15 +901,12 @@ void IN_ActivateMouse( void )
 	}
 }
 
-void IN_Frame (void) {
-
+void IN_Frame (void)
+{
 	if ( cls.keyCatchers & KEYCATCH_CONSOLE )
 	{
-		// temporarily deactivate if not in the game and
-		// running on the desktop
-		// voodoo always counts as full screen
-		if (Cvar_VariableValue ("r_fullscreen") == 0
-				&& strcmp( Cvar_VariableString("r_glDriver"), _3DFX_DRIVER_NAME ) )
+		// temporarily deactivate if not in the game and running on the desktop voodoo always counts as full screen
+		if (Cvar_VariableValue ("r_fullscreen") == 0 && strcmp( Cvar_VariableString("r_glDriver"), _3DFX_DRIVER_NAME ) )
 		{
 			IN_DeactivateMouse ();
 			return;
@@ -985,7 +965,6 @@ static int mouseResetTime = 0;
 #define MOUSE_RESET_DELAY 50
 #define CAM_THROTTLE_THRESHHOLD 30
 
-
 static void HandleEvents(void)
 {
 	int t = 0;
@@ -993,14 +972,13 @@ static void HandleEvents(void)
 	int freeze = 0;
 	int prop;
 	int size[2];
-
-	int x, y, val, tid, key, keyflags;
+	int x = 0, y = 0, tid = 0, key = 0, keyflags = 0;
 	mtouch_event_t mtouch_event;
 	static int retainMovX = 0, retainMovY = 0;
 	static int lookX = 0, lookY = 0;
-	static camThrottle = 0;
 	static int moveTouchId = -1;
 	static int lookTouchId = -1;
+	int domain = 0, eventType = 0;
 	static qboolean touchIds[3] = { false, false, false };
 	qboolean dowarp = qfalse;
 	int jmping = 0;
@@ -1012,220 +990,249 @@ static void HandleEvents(void)
 		Sys_QueEvent( t, SE_KEY, K_SPACE, qfalse, 0, NULL );
 	}
 
-	while (!screen_get_event(screen_ctx, screen_ev, 1))
-	{
-		rc = screen_get_event_property_iv(screen_ev, SCREEN_PROPERTY_TYPE, &val);
-		if (rc || val == SCREEN_EVENT_NONE)
-			break;
+    bps_event_t* event = NULL;
 
-		switch (val)
-		{
-			case SCREEN_EVENT_CLOSE:
-				Com_Printf("SCREEN CLOSE EVENT!\n");
-				break;
-			case SCREEN_EVENT_MTOUCH_RELEASE:
-				screen_get_mtouch_event(screen_ev, &mtouch_event, 0);
-				tid = mtouch_event.contact_id;
+    while (true)
+    {
+        rc = bps_get_event(&event, 1);
+        if (rc != BPS_SUCCESS || event == NULL)
+            break;
 
-				if (touchIds[tid]) {
-					if (moveTouchId == tid) {
-						moveTouchId = -1;
-						touchIds[tid] = false;
-						movX = movY = 0;
-						retainMovX = retainMovY = 0;
-					} else if (lookTouchId == tid) {
-						lookTouchId = -1;
-						touchIds[tid] = false;
-						lookX = lookY = 0;
-					}
-				}
+        domain = bps_event_get_domain(event);
 
-				Sys_QueEvent(t, SE_KEY, K_MOUSE1, qfalse, 0, NULL);
-				Sys_QueEvent( t, SE_KEY, K_SPACE, qfalse, 0, NULL );
-				Sys_QueEvent( t, SE_KEY, 's', qfalse, 0, NULL );
-				Sys_QueEvent( t, SE_KEY, 'w', qfalse, 0, NULL );
-				Sys_QueEvent( t, SE_KEY, 'd', qfalse, 0, NULL );
-				Sys_QueEvent( t, SE_KEY, 'a', qfalse, 0, NULL );
-				Sys_QueEvent( t, SE_KEY, 'n', qfalse, 0, NULL );
+        if (domain == screen_get_domain())
+        {
+            screen_ev = screen_event_get_event(event);
+            screen_get_event_property_iv(screen_ev, SCREEN_PROPERTY_TYPE, &eventType);
 
-				break;
+            switch (eventType)
+            {
+                case SCREEN_EVENT_CLOSE:
+                {
+                    Com_Printf("SCREEN CLOSE EVENT!\n");
+                }
+                break;
 
-			case SCREEN_EVENT_POINTER:
-			case SCREEN_EVENT_MTOUCH_TOUCH:
-			case SCREEN_EVENT_MTOUCH_MOVE:
-				screen_get_mtouch_event(screen_ev, &mtouch_event, 0);
+                case SCREEN_EVENT_MTOUCH_RELEASE:
+                {
+                    screen_get_mtouch_event(screen_ev, &mtouch_event, 0);
+                    tid = mtouch_event.contact_id;
 
-				if (mouse_active && tid < 3)
-				{
-					if (cls.state == CA_ACTIVE && !uis.activemenu)
-					{
-						x = mtouch_event.x;
-						y = mtouch_event.y;
-						tid = mtouch_event.contact_id;
+                    if (touchIds[tid])
+                    {
+                        if (moveTouchId == tid)
+                        {
+                            moveTouchId = -1;
+                            touchIds[tid] = false;
+                            movX = movY = 0;
+                            retainMovX = retainMovY = 0;
+                        }
+                        else if (lookTouchId == tid)
+                        {
+                            lookTouchId = -1;
+                            touchIds[tid] = false;
+                            lookX = lookY = 0;
+                        }
+                    }
+                    Sys_QueEvent(t, SE_KEY, K_MOUSE1, qfalse, 0, NULL);
+                    Sys_QueEvent( t, SE_KEY, K_SPACE, qfalse, 0, NULL );
+                    Sys_QueEvent( t, SE_KEY, 's', qfalse, 0, NULL );
+                    Sys_QueEvent( t, SE_KEY, 'w', qfalse, 0, NULL );
+                    Sys_QueEvent( t, SE_KEY, 'd', qfalse, 0, NULL );
+                    Sys_QueEvent( t, SE_KEY, 'a', qfalse, 0, NULL );
+                    Sys_QueEvent( t, SE_KEY, 'n', qfalse, 0, NULL );
+                }
+                break;
 
-						if (val == SCREEN_EVENT_MTOUCH_TOUCH)
-						{
-							// check for new input type
-							if (moveTouchId == -1 && (((movBoundX - x) * (movBoundX - x) + (movBoundY - y)*(movBoundY - y)) < r1square ))
-							{
-								// move
-								moveTouchId = tid;
-								touchIds[tid] = true;
-							}
-							else
-							{
-								// look
-								lookTouchId = tid;
-								touchIds[tid] = true;
-								lookX = x;
-								lookY = y;
+                case SCREEN_EVENT_MTOUCH_MOVE:
+                case SCREEN_EVENT_MTOUCH_TOUCH:
+                case SCREEN_EVENT_POINTER:
+                {
+                    screen_get_mtouch_event(screen_ev, &mtouch_event, 0);
+                    if (mouse_active && tid < 3)
+                    {
+                        if (cls.state == CA_ACTIVE && !uis.activemenu)
+                        {
+                            x = mtouch_event.x;
+                            y = mtouch_event.y;
+                            tid = mtouch_event.contact_id;
 
-								// allow looking while firing/jumping
-								if (((fireBoundX - x) * (fireBoundX - x) + (fireBoundY - y)*(fireBoundY - y)) < r2square)
-								{
-									// fire
-									Sys_QueEvent(t, SE_KEY, K_MOUSE1, qtrue, 0, NULL);
-								}
-								else if (((jmpBoundX - x) * (jmpBoundX - x) + (jmpBoundY - y)*(jmpBoundY - y)) < r2square )
-								{
-									// jump
-									Sys_QueEvent( t, SE_KEY, K_SPACE, qtrue, 0, NULL );
-								}
-								else if (((weaponNextX - x) * (weaponNextX - x) + (weaponNextY - y)*(weaponNextY - y)) < r2square )
-								{
-									// weapon prev
-									Sys_QueEvent( t, SE_KEY, 'n', qtrue, 0, NULL );
-								}
-							}
-						}
+                            if (eventType == SCREEN_EVENT_MTOUCH_TOUCH)
+                            {
+                                // check for new input type
+                                if (moveTouchId == -1 && (((movBoundX - x) * (movBoundX - x) + (movBoundY - y)*(movBoundY - y)) < r1square ))
+                                {
+                                    // move
+                                    moveTouchId = tid;
+                                    touchIds[tid] = true;
+                                }
+                                else
+                                {
+                                    // look
+                                    lookTouchId = tid;
+                                    touchIds[tid] = true;
+                                    lookX = x;
+                                    lookY = y;
 
-						if (moveTouchId == tid)
-						{
-							// process moving
-							x = (x - movBoundX);
-							y = (y - movBoundY);
-							retainMovX = x;
-							retainMovY = y;
-							movX = x * 640 / 786;
-							movY = y;
-							if (x * x + y * y > r1square)
-							{
-								movX = movY = -1; // hide
-							}
-						}
-						else if (lookTouchId == tid)
-						{
-							// process looking
-							Sys_QueEvent(t, SE_MOUSE, (x - lookX) * 2, (y - lookY) * 2, 0, NULL);
-							lookX = x;
-							lookY = y;
-						}
-					}
-					else if (cls.state == CA_CINEMATIC)
-					{
-						x = mtouch_event.x;
-						y = mtouch_event.y;
+                                    // allow looking while firing/jumping
+                                    if (((fireBoundX - x) * (fireBoundX - x) + (fireBoundY - y)*(fireBoundY - y)) < r2square)
+                                    {
+                                        // fire
+                                        Sys_QueEvent(t, SE_KEY, K_MOUSE1, qtrue, 0, NULL);
+                                    }
+                                    else if (((jmpBoundX - x) * (jmpBoundX - x) + (jmpBoundY - y)*(jmpBoundY - y)) < r2square )
+                                    {
+                                        // jump
+                                        Sys_QueEvent( t, SE_KEY, K_SPACE, qtrue, 0, NULL );
+                                    }
+                                    else if (((weaponNextX - x) * (weaponNextX - x) + (weaponNextY - y)*(weaponNextY - y)) < r2square )
+                                    {
+                                        // weapon prev
+                                        Sys_QueEvent( t, SE_KEY, 'n', qtrue, 0, NULL );
+                                    }
+                                }
+                            }
 
-						if (val == SCREEN_EVENT_MTOUCH_TOUCH)
-						{
-							Sys_QueEvent(t, SE_KEY, K_MOUSE1, qtrue, 0, NULL);
-						}
-						else if (val == SCREEN_EVENT_MTOUCH_RELEASE)
-						{
-							Sys_QueEvent(t, SE_KEY, K_MOUSE1, qfalse, 0, NULL);
-						}
-					}
-					else if ((cls.state == CA_ACTIVE && uis.activemenu) ||
-							 (cls.state != CA_ACTIVE && cls.state != CA_CINEMATIC))
-					{
-						x = (mtouch_event.x * 640) / 1024;
-						y = (mtouch_event.y * 480 ) / 768;
+                            if (moveTouchId == tid)
+                            {
+                                // process moving
+                                x = (x - movBoundX);
+                                y = (y - movBoundY);
+                                retainMovX = x;
+                                retainMovY = y;
+                                movX = x * 640 / 786;
+                                movY = y;
+                                if (x * x + y * y > r1square)
+                                {
+                                    movX = movY = -1; // hide
+                                }
+                            }
+                            else if (lookTouchId == tid)
+                            {
+                                // process looking
+                                Sys_QueEvent(t, SE_MOUSE, (x - lookX) * 2, (y - lookY) * 2, 0, NULL);
+                                lookX = x;
+                                lookY = y;
+                            }
+                        }
+                        else if (cls.state == CA_CINEMATIC)
+                        {
+                            x = mtouch_event.x;
+                            y = mtouch_event.y;
 
-						if (x == glConfig.vidWidth/2 &&
-							y == glConfig.vidHeight/2)
-						{
-							x = y = 0;
-							break;
-						}
+                            if (eventType == SCREEN_EVENT_MTOUCH_TOUCH)
+                            {
+                                Sys_QueEvent(t, SE_KEY, K_MOUSE1, qtrue, 0, NULL);
+                            }
+                            else if (eventType == SCREEN_EVENT_MTOUCH_RELEASE)
+                            {
+                                Sys_QueEvent(t, SE_KEY, K_MOUSE1, qfalse, 0, NULL);
+                            }
+                        }
+                        else if ((cls.state == CA_ACTIVE && uis.activemenu) ||  (cls.state != CA_ACTIVE && cls.state != CA_CINEMATIC))
+                        {
+                            x = (mtouch_event.x * 640) / RESOLUTION_WIDTH;
+                            y = (mtouch_event.y * 480 ) / RESOLUTION_HEIGHT;
 
-						dowarp = qtrue;
+                            if (x == glConfig.vidWidth/2 &&  y == glConfig.vidHeight/2)
+                            {
+                                x = y = 0;
+                                break;
+                            }
 
-						x =  x - prevX;
-						y =  y - prevY;
+                            dowarp = qtrue;
 
-						Sys_QueEvent(t, SE_MOUSE, x, y, 0, NULL);
+                            x =  x - prevX;
+                            y =  y - prevY;
 
-						prevX = (mtouch_event.x * 640) / 1024;
-						prevY = (mtouch_event.y * 480 ) / 768;
+                            Sys_QueEvent(t, SE_MOUSE, x, y, 0, NULL);
 
-						if (val == SCREEN_EVENT_MTOUCH_TOUCH)
-						{
-							Sys_QueEvent(t, SE_KEY, K_MOUSE1, qtrue, 0, NULL);
-						}
-						else if (val == SCREEN_EVENT_MTOUCH_RELEASE)
-						{
-							Sys_QueEvent(t, SE_KEY, K_MOUSE1, qfalse, 0, NULL);
-						}
-					}
+                            prevX = (mtouch_event.x * 640) / RESOLUTION_WIDTH;
+                            prevY = (mtouch_event.y * 480 ) / RESOLUTION_HEIGHT;
 
-				}
+                            if (eventType == SCREEN_EVENT_MTOUCH_TOUCH)
+                            {
+                                Sys_QueEvent(t, SE_KEY, K_MOUSE1, qtrue, 0, NULL);
+                            }
+                            else if (eventType == SCREEN_EVENT_MTOUCH_RELEASE)
+                            {
+                                Sys_QueEvent(t, SE_KEY, K_MOUSE1, qfalse, 0, NULL);
+                            }
+                        }
 
-				if (retainMovX > movBoundRad / 2)
-				{
-					Sys_QueEvent( t, SE_KEY, 'd', qtrue, 0, NULL );
-				}
-				else if (retainMovX < -movBoundRad / 2 )
-				{
-					Sys_QueEvent( t, SE_KEY, 'a', qtrue, 0, NULL );
-				}
-				else
-				{
-					Sys_QueEvent( t, SE_KEY, 'd', qfalse, 0, NULL );
-					Sys_QueEvent( t, SE_KEY, 'a', qfalse, 0, NULL );
-				}
+                    }
+                    if (retainMovX > movBoundRad / 2)
+                    {
+                        Sys_QueEvent( t, SE_KEY, 'd', qtrue, 0, NULL );
+                    }
+                    else if (retainMovX < -movBoundRad / 2 )
+                    {
+                        Sys_QueEvent( t, SE_KEY, 'a', qtrue, 0, NULL );
+                    }
+                    else
+                    {
+                        Sys_QueEvent( t, SE_KEY, 'd', qfalse, 0, NULL );
+                        Sys_QueEvent( t, SE_KEY, 'a', qfalse, 0, NULL );
+                    }
+                    if (retainMovY > movBoundRad / 2)
+                    {
+                        Sys_QueEvent( t, SE_KEY, 's', qtrue, 0, NULL );
+                    }
+                    else if (retainMovY < -movBoundRad / 2)
+                    {
+                        Sys_QueEvent( t, SE_KEY, 'w', qtrue, 0, NULL );
+                    }
+                    else
+                    {
+                        Sys_QueEvent( t, SE_KEY, 's', qfalse, 0, NULL );
+                        Sys_QueEvent( t, SE_KEY, 'w', qfalse, 0, NULL );
+                    }
+                }
+                break;
 
-				if (retainMovY > movBoundRad / 2)
-				{
-					Sys_QueEvent( t, SE_KEY, 's', qtrue, 0, NULL );
-				}
-				else if (retainMovY < -movBoundRad / 2)
-				{
-					Sys_QueEvent( t, SE_KEY, 'w', qtrue, 0, NULL );
-				}
-				else
-				{
-					Sys_QueEvent( t, SE_KEY, 's', qfalse, 0, NULL );
-					Sys_QueEvent( t, SE_KEY, 'w', qfalse, 0, NULL );
-				}
-				break;
 
-			case SCREEN_EVENT_KEYBOARD:
-				screen_get_event_property_iv(screen_ev, SCREEN_PROPERTY_KEY_SYM, &key);
-				screen_get_event_property_iv(screen_ev, SCREEN_PROPERTY_KEY_FLAGS, &keyflags);
-				if (keyflags & KEY_DOWN)
-				{
-					if (key >= ' ' && key < '~')
-					{
-						Sys_QueEvent( t, SE_CHAR, key, qfalse, 0, NULL );
-					}
-					else
-					{
-						key = key - 0xf000;
-						switch (key)
-						{
-						case 8: // backspace
-							Sys_QueEvent( t, SE_CHAR, '\b', qfalse, 0, NULL );
-							return;
-						default:
-							break;
-						}
-
-						Sys_QueEvent( t, SE_KEY, key, qtrue, 0, NULL );
-						Sys_QueEvent( t, SE_KEY, key, qfalse, 0, NULL );
-					}
-				}
-				break;
-		}
+                case SCREEN_EVENT_KEYBOARD:
+                {
+                    screen_get_event_property_iv(screen_ev, SCREEN_PROPERTY_KEY_SYM, &key);
+                    screen_get_event_property_iv(screen_ev, SCREEN_PROPERTY_KEY_FLAGS, &keyflags);
+                    if (keyflags & KEY_DOWN)
+                    {
+                        if (key >= ' ' && key < '~')
+                        {
+                            Sys_QueEvent( t, SE_CHAR, key, qfalse, 0, NULL );
+                        }
+                        else
+                        {
+                            key = key - 0xf000;
+                            switch (key)
+                            {
+                            case 8: // backspace
+                                Sys_QueEvent( t, SE_CHAR, '\b', qfalse, 0, NULL );
+                                return;
+                            default:
+                                break;
+                            }
+                            Sys_QueEvent( t, SE_KEY, key, qtrue, 0, NULL );
+                            Sys_QueEvent( t, SE_KEY, key, qfalse, 0, NULL );
+                        }
+                    }
+                }
+                break;
+            }
+        }
+        else if (domain == navigator_get_domain())
+        {
+            switch (bps_event_get_code(event))
+             {
+             case NAVIGATOR_SWIPE_DOWN:
+                 Sys_QueEvent( Sys_Milliseconds(), SE_KEY, K_ESCAPE, qtrue, 0, NULL );
+                 Sys_QueEvent( Sys_Milliseconds(), SE_KEY, K_ESCAPE, qfalse, 0, NULL );
+                 break;
+             case NAVIGATOR_EXIT:
+                 exit(0);
+                 break;
+             }
+        }
 	}
 }
 
@@ -1239,9 +1246,9 @@ void Sys_SendKeyEvents (void)
 
 void GLimp_EndFrame( void )
 {
-	char 		buffer[500];
-	char		*p;
-	int 		len;
+	char buffer[500];
+	char* p;
+	int len;
 	const char *msg = NULL;
 	int interval;
 	int size[2];
@@ -1251,26 +1258,5 @@ void GLimp_EndFrame( void )
 	if ( strcmp( r_drawBuffer->string, "GL_FRONT" ) != 0 )
 	{
 		SwapBuffers();
-	}
-
-	while ( (len = read(ppsfd, buffer, sizeof( buffer ) -1 ) ) >= 0 )
-	{
-		if ( len == 0 )
-		{
-			return;
-		}
-		buffer[len] = '\0';
-		p = buffer;
-		pps_decoder_parse( &decoder, p, len );
-		pps_decoder_push( &decoder, NULL );
-		pps_decoder_get_string(&decoder, "msg", &msg);
-		if (pps_decoder_status(&decoder, true) == PPS_DECODER_OK )
-		{
-			if ( strcmp(msg, "SWIPE_DOWN") == 0 )
-			{
-				Sys_QueEvent( Sys_Milliseconds(), SE_KEY, K_ESCAPE, qtrue, 0, NULL );
-				Sys_QueEvent( Sys_Milliseconds(), SE_KEY, K_ESCAPE, qfalse, 0, NULL );
-			}
-		}
 	}
 }

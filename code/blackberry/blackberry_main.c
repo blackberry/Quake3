@@ -62,7 +62,7 @@ void Sys_mkdir ( const char *path )
     Com_Printf("Using Sys_mkdir which has no programmed behaviour");
 }
 
-void  Sys_Error( const char *error, ...)
+void Sys_Error( const char *error, ...)
 {
 	va_list	argptr;
 	printf ("Sys_Error: ");	
@@ -177,13 +177,10 @@ void Sys_Exit( int ex )
 {
     Sys_ConsoleInputShutdown();
 
-    #ifdef NDEBUG // regular behavior
-        _exit(ex);
-    #else
-        // Give me a backtrace on error exits.
-        assert( ex == 0 );
-        exit(ex);
-#endif
+    // Give me a backtrace on error exits.
+    assert( ex == 0 );
+    exit(ex);
+
 }
 
 sysEvent_t Sys_GetEvent( void )
@@ -200,7 +197,7 @@ sysEvent_t Sys_GetEvent( void )
         return eventQue[ ( eventTail - 1 ) & MASK_QUED_EVENTS ];
     }
 
-    // pump the message loop in vga this calls KBD_Update, under X, it calls GetEvent
+    // Pump the message loop in vga this calls KBD_Update, under X, it calls GetEvent
     Sys_SendKeyEvents ();
 
     // check for console commands
@@ -286,8 +283,8 @@ void* Sys_LoadDll( const char *name, char *fqpath , int (**entryPoint)(int, ...)
     }
 
     // Return arbitary value in order to indicate dll has been 'loaded'
-    //  The only time this return value is actually used is when called with Sys_UnloadDll
-    //  which simply ignores libHandle
+    // The only time this return value is actually used is when called with Sys_UnloadDll
+    // which simply ignores libHandle
     return libHandle;
 }
 
@@ -312,8 +309,6 @@ int main(int argc, char **argv)
 	char cmd_rundemo[100];
     Sys_SetDefaultCDPath("./app/native");
 
-    //saved_euid = geteuid();
-
     // Clear the queues
     memset( &eventQue[0], 0, MAX_QUED_EVENTS*sizeof(sysEvent_t) );
     memset( &sys_packetReceived[0], 0, MAX_MSGLEN*sizeof(byte) );
@@ -321,7 +316,6 @@ int main(int argc, char **argv)
     // Initialize game
     Com_Init(cmdline);
     NET_Init();
-
 
 	while (1)
 	{
